@@ -1,0 +1,192 @@
+.b-main * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.b-main *:not(table *) {
+    all: revert;
+}
+
+.b-main table * {
+    list-style: revert;
+    text-decoration: revert;
+}
+
+.b-main p {
+    white-space: pre-wrap;
+}
+
+.b-main {
+    margin: 20px auto;
+    padding: 0 15px;
+    padding-left: 20px;
+    line-height: 1.5;
+    width: 100%;
+}
+
+.b-main img {
+    display: table;
+    margin: auto;
+    padding: 20px;
+}
+
+.b-main .emoji {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+@media screen and (max-width:768px) {
+    .b-main,
+    .b-main * {
+        font-size: 13px;
+    }
+    .b-main img {
+        padding: 5px;
+    }
+}
+
+.b-main h1 {
+    margin-left: -20px;
+}
+
+.b-main h2 {
+    margin-left: -20px;
+}
+
+.b-main h3 {
+    margin-left: -10px;
+}
+
+.b-main ul,
+.b-main ol {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.b-main table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.b-main tr>th {
+    background: var(--table-bg);
+    text-align: center;
+}
+
+.b-main tr>* {
+    border: 1px solid var(--main-border);
+    padding: 5px;
+    word-break: break-all;
+    text-align: unset;
+}
+
+.b-main iframe {
+    display: block;
+    width: 910px;
+    max-width: 100%;
+    aspect-ratio: 910 / 1280;
+    padding: 20px;
+    margin: auto !important;
+    border: 1px solid var(--main-border) !important;
+    /* height: 1280px; */
+}
+
+.b-main .prettyprint {
+    white-space: pre-wrap;
+    font-family: unset;
+    display: block;
+}
+
+.b-meta {
+    border-bottom: 2px solid var(--blue);
+}
+
+.b-portal {
+    border-top: 2px solid var(--blue);
+}
+
+.b-portal a {
+    display: block;
+}
+
+.b-portal a>* {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.b-portal xmp {
+    width: calc(100% - 40px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.b-portal b {
+    width: 40px;
+}
+
+.b-meta th,
+.b-portal th {
+    text-align: left !important;
+}
+
+.b-meta td,
+.b-portal td {
+    text-align: right !important;
+}
+
+.b-meta tr>*,
+.b-portal tr>* {
+    border: none !important;
+    padding: 10px !important;
+}
+
+.b-meta thead {
+    background: var(--main-bg);
+}
+
+.b-page {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.b-page a {
+    margin: 0 3px;
+}
+
+.b-hit {
+    font-size: 0.8em;
+    text-align: right;
+    padding: 5px 10px;
+    color: var(--footer-text);
+}
+
+img.show {
+    position: fixed;
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    object-fit: contain;
+    transition: width 0.8s height 0.8s;
+    z-index: 4;
+}
+
+.blur::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    filter: blur(8px);
+    z-index: 3;
+    background: black;
+    opacity: .7;
+}

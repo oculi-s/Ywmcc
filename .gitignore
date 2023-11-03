@@ -1,0 +1,8 @@
+.env
+node_modules/
+
+.gitconfig
+
+__admin/
+__module/
+__https/

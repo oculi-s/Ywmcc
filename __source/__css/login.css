@@ -1,0 +1,87 @@
+.login {
+    width: 800px;
+    max-width: 90%;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 1px solid var(--main-border);
+    border-top: 4px solid var(--deep-blue);
+}
+
+.login>* {
+    display: inline-block;
+    padding: 20px;
+    vertical-align: middle;
+}
+
+.login form {
+    max-width: 400px;
+}
+
+.login>*>div {
+    margin: 15px auto;
+    text-align: left;
+}
+
+[name=id] {
+    width: 50%;
+}
+
+[name=pw] {
+    width: 100%;
+}
+
+input {
+    border: none;
+    padding: 10px;
+}
+
+.login>*>div>* {
+    font-size: 15px;
+    vertical-align: top;
+    margin: 5px auto;
+    border: 1px solid var(--main-border);
+}
+
+.login>*>p {
+    color: var(--footer-bg);
+    font-size: 12px;
+}
+
+.login button {
+    width: 100%;
+    background: var(--blue) !important;
+    padding: 10px;
+    color: #fff;
+}
+
+@media screen and (min-width:768px) {
+    .login {
+        padding: 70px;
+    }
+
+    .login img {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .login {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .login img {
+        display: block;
+        margin: auto;
+    }
+}
+
+.r {
+    color: red;
+    font-weight: bold;
+}

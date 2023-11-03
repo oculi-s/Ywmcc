@@ -1,0 +1,86 @@
+table {
+    border-top: 4px solid var(--table-top);
+    margin: 10px auto;
+}
+
+table th {
+    border-right: 1px solid #c7d5e8;
+}
+
+table * {
+    font-size: 16px;
+}
+
+[type=radio] {
+    display: none !important;
+}
+
+[type=radio]:checked+* {
+    background: var(--blue);
+    color: #fff;
+}
+
+.a1 input,
+.a1 label,
+.a2 textarea {
+    padding: 10px;
+    border: 1px solid var(--main-border);
+    border-radius: 5px;
+    margin: 3px;
+}
+
+.a1 label {
+    display: inline-block;
+}
+
+.a1 table {
+    table-layout: fixed;
+}
+
+.a1 td {
+    white-space: unset !important;
+}
+
+.a1 .b3 td:first-of-type {
+    border-right: 1px solid var(--main-border);
+}
+
+.m-22 button {
+    display: block;
+    margin: auto;
+    background: var(--blue);
+    color: #fff !important;
+}
+
+.a2 textarea {
+    height: 300px;
+    resize: none;
+}
+
+@media screen and (min-width:768px) {
+    table {
+        width: 90%;
+    }
+    table input,
+    table textarea {
+        width: 80%;
+    }
+    .a1 label {
+        padding: 10px 30px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    table input,
+    table textarea {
+        width: 100%;
+    }
+}
+
+.box {
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    border: 1px solid #eee;
+    text-align: center;
+}

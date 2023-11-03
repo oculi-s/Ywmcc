@@ -1,0 +1,47 @@
+.c,
+.t {
+    margin: 10px auto;
+}
+
+.c {
+    height: 300px;
+    background: var(--main-bg);
+    padding: 10px;
+}
+
+.t {
+    max-height: 300px;
+    overflow: auto;
+    vertical-align: top;
+}
+
+.t thead {
+    position: sticky;
+    top: 0;
+    background: white;
+}
+
+@media screen and (min-width:768px) {
+    .c,
+    .t {
+        display: inline-block;
+        width: 47%;
+    }
+    .t {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .t {
+        margin-bottom: 20px;
+    }
+}
+
+.highcharts-credits {
+    display: none;
+}
+
+.highcharts-title {
+    font-size: 15px;
+}

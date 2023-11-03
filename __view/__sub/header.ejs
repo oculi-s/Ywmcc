@@ -1,0 +1,44 @@
+<header>
+    <div>
+        <h1>
+            <a href="/"><img src="/__source/__img/logo_header.png"></a>
+        </h1>
+        <% if(auth){ %>
+        <% //let r = new Date(time-new Date()) %>
+        <% let r = new Date() %>
+        <!--<span class="timer" value=<%-r.getTime()%>><%- `${String(r.getMinutes()).padStart(2, '0')}:${String(r.getSeconds()).padStart(2, '0')}` %></span>-->
+        <% } %>
+        <button class="fa fa-navicon menu"></button>
+        <div class="p-hide"></div>
+        <nav>
+            <button class="close p-hide"></button>
+            <% for (let e in menu) { %>
+            <% if ((menu[e].auth == undefined || menu[e].auth == auth) && (menu[e].admin == undefined || menu[e].admin == admin)) { %>
+            <div>
+                <p><%- menu[e].name %></p>
+                <div class="hide">
+                    <% for (let c of menu[e].child) { %>
+                    <% if (!c.auth || c.auth == auth) { %>
+                    <a href=<%- c.href %>><%- c.name %></a>
+                    <% }} %>
+                </div>
+            </div>
+            <% }} %>
+            <% if (!auth) { %>
+            <div class=log>
+                <p onclick=logIn()>로그인</p>
+            </div>
+            <% } %>
+        </nav>
+    </div>
+
+    <span class="hide">
+        <div>
+            <p>
+                <span>학생상담코칭센터는 나 자신을 좀 더 잘 알고 이해함으로써<br> 대학생활 적응과 내적 성장을 돕습니다.</span>
+            </p>
+        </div>
+    </span>
+</header>
+<link rel="stylesheet" href="/__source/__css/__header.css">
+<script type="module" src="/__source/__js/__header.js"></script>

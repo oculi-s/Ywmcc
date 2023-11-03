@@ -1,0 +1,87 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/__table.css">
+    <link rel="stylesheet" href="/__source/__css/board.css">
+    <link rel="stylesheet" href="/__source/__css/admin/board.css">
+</head>
+
+<body>
+    <%-include(d.header)%>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%-include(d.aside)%>
+            <article class="m-22">
+                <div>
+                    <h2>공지사항</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <% if (admin) { %>
+                <div class="admin">
+                    <%- include(ba.d.admin.js.board) %>
+                    <button class="add">글쓰기</button>
+                    <span>
+                        <span class="color grey"></span>
+                        <span>비공개 공지</span>
+                    </span>
+                </div>
+                <% } %>
+                <table>
+                    <colgroup>
+                        <col width="8%">
+                        <col width="*">
+                        <!--<col width="10%" class="m-h">-->
+                        <col width="15%" class="m-h">
+                        <col width="15%">
+                        <col width="5%">
+                    </colgroup>
+                    <% let n = 15; %>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <!--<th class="m-h">첨부</th>-->
+                            <th class="m-h">작성자</th>
+                            <th>등록일</th>
+                            <th>조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% board.data = board.data.sort((a,b)=>new Date(`${b.date} ${b.time}`)-new Date(`${a.date} ${a.time}`)) %>
+                        <% board.data = board.data.filter(e=>!e.admin || e.admin == admin) %>
+                        <% let sum = dict=> Object.values(dict || {}).reduce((a,b) => a+b, 0) %>
+                        <% for (let e of board.data.slice(n*(page-1), n*page)) { %>
+                        <tr <%- e.admin ? 'class=grey':'' -%>>
+                            <td><%- board.data.indexOf(e)+1 %></td>
+                            <td><a href=<%- `/board?uid=${e.uid}` %>><%- e.title %></a></td>
+                            <!--<td class="m-h"></td>-->
+                            <td class="m-h"><%- e.author %></td>
+                            <td><%- e.date.replace(/-/g,'/').slice(2) %></td>
+                            <% let hit = ba.json(ba.d.board.hit(e.uid)) %>
+                            <td><%- Object.values(hit).map(e=>sum(e)).reduce((a,b)=>a+b, 0); %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                <div class="b-page">
+                    <% let max = parseInt((board.data.length+n-1)/n) %>
+                    <% for (let e of Array.from(Array(max).keys())){ %>
+                    <a <%- (e+1==page)?`class='u'`:'' %> href=<%- `/board?page=${e+1}` %>><%- e+1 %></a>
+                    <% } %>
+                </div>
+        </div>
+        </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+</body>
+
+</html>

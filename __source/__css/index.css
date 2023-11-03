@@ -1,0 +1,250 @@
+body {
+    background: var(--main-bg);
+}
+
+.m-img * {
+    font-family: 'Yonsei';
+}
+
+.m-img ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0);
+    opacity: .3;
+}
+
+.m-img>span {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    display: table;
+    max-width: 1240px;
+    z-index: 4;
+}
+
+.m-img img {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    width: fit-content;
+    height: auto;
+    z-index: 1;
+}
+
+.m-img>span>div {
+    height: calc(100% - 40px);
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.m-img>span>div>span {
+    display: block;
+}
+
+.m-1 {
+    z-index: 3;
+}
+
+.m-2 {
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.m-21 {
+    width: 32.25%;
+    min-height: 256px;
+    padding: 30px 3%;
+}
+
+.m-21 span {
+    font-size: 13px;
+    color: #999;
+}
+
+.m-22 {
+    width: 65.32%;
+    min-height: unset !important;
+    padding: 30px 3%;
+    text-align: center;
+    position: relative;
+}
+
+.m-22 video {
+    max-width: 100%;
+    width: 500px;
+}
+
+.hit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8em;
+    color: var(--footer-text);
+}
+
+.m-1 dd {
+    text-align: center;
+}
+
+dd .btn {
+    width: calc(33% - 20px);
+}
+
+@media screen and (max-width:768px) {
+    .m-2 {
+        padding: 0 10px 15px;
+    }
+    .m-1 {
+        margin: -20px auto 15px;
+        padding: 20px;
+        width: calc(100% - 20px);
+    }
+    .m-1>div {
+        display: block;
+        font-size: 22px;
+        width: 100%;
+        height: auto;
+        background-size: 30px;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+    .m-1>div>* {
+        font-size: 0.8em;
+    }
+    .m-1 dl {
+        float: none;
+        width: 100%;
+        padding: 0;
+        border: none;
+    }
+    .m-1 dd {
+        margin: auto;
+        width: fit-content;
+    }
+    .m-1 li {
+        display: block;
+        width: 100%;
+    }
+    .m-2>article {
+        float: none;
+        padding: 15px;
+        width: 100%;
+    }
+    .m-21 {
+        margin-bottom: 15px;
+    }
+    .m-21 dt {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+    .m-21 dd a {
+        display: block;
+    }
+    .m-img>ol {
+        top: calc(100% - 40px);
+    }
+}
+
+@media screen and (min-width:768px) {
+    .m-1 {
+        margin: 0 auto 30px;
+        margin-top: -40px;
+        padding: 35px;
+        width: 100%;
+    }
+    .m-1>div {
+        text-align: right;
+    }
+    .m-1 li {
+        display: inline-block;
+        width: calc(50% - 3px);
+    }
+    .m-img>ol {
+        top: calc(100% - 60px);
+    }
+    @media screen and (max-width:1024px) {
+        .m-1>div {
+            padding: 63px 40px;
+            font-size: 30px;
+            width: 33.38%;
+            background-size: 40px;
+        }
+        .m-1>div>* {
+            font-size: 0.6em;
+        }
+        .m-1 dl {
+            float: left;
+            padding: 28px 0 28px 50px;
+            width: 66.62%;
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .m-img {
+        height: 300px;
+    }
+    .m-img>span {
+        padding: 0 20px;
+    }
+    .m-img div {
+        margin-bottom: 15px;
+        font-size: 30px;
+    }
+    .m-1 span {
+        min-width: 54px;
+        font-size: 16px;
+    }
+    .m-1 li p {
+        width: calc(100% - 72px);
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .m-img {
+        height: 500px;
+    }
+    .m-img div {
+        margin-bottom: 60px;
+        font-size: 60px;
+    }
+    .m-1>div {
+        width: 33.38%;
+        font-size: 36px;
+        padding: 50px;
+        padding-left: 0;
+    }
+    .m-1>div>* {
+        font-size: 0.6em;
+    }
+    .m-1 dl {
+        float: left;
+        padding: 28px 0 28px 50px;
+        width: 66.62%;
+        border-left: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .m-1 span {
+        min-width: 60px;
+        font-size: 18px;
+    }
+    .m-1 li p {
+        width: calc(100% - 80px);
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width:1024px) and (max-width:1400px) {
+    .m-img p {
+        padding-left: 70px;
+    }
+}

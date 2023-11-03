@@ -1,0 +1,14 @@
+<dialog class="edit">
+    <button class="close fa fa-times"></button>
+    <h2>상담시간 수정</h2>
+    <p>신청시간 : <span class=time></span></p>
+    <%- include(d.calendar) %>
+    <h2>상담내용 수정</h2>
+    <div>
+        <textarea id="about"></textarea>
+        <button class="btn save">신청수정</button>
+        <button class="btn del">신청취소</button>
+    </div>
+</dialog>
+<link rel="stylesheet" href="/__source/__css/__dialog.css">
+<script type="module" src="/__source/__js/__dialog.js"></script>

@@ -1,0 +1,18 @@
+<footer>
+    <div>
+        <img src="/__source/__img/logo_footer.png">
+        <div>
+            <span> <a href="https://medical.yonsei.ac.kr/we/privacy"><b><u>개인정보처리방침</u></b></a></span>
+            <!-- <span> <a href="/wmcounsel/legal_notice.jsp">법적고지</a></span> -->
+        </div>
+    </div>
+    <address <%- auth?`uid="${req.user.uid}"`:""%>>
+        <div>
+            <span> 주소 : (26426) 강원도 원주시 일산로20 원주의과대학 학생상담코칭센터 의학관 310호<span class="m-h">,</span></span>
+            <span> 전화 : 033-741-0246<span class="m-h">,</span></span>
+            <span> 이메일 : <a class="u" href=mailto:wmcc@yonsei.ac.kr>wmcc@yonsei.ac.kr</a></span>
+        </div>
+        <span> Copyrights (c) 2022 Yonsei university Counseling Center. All rights reserved.</span>
+    </address>
+</footer>
+<link rel="stylesheet" href="/__source/__css/__footer.css">

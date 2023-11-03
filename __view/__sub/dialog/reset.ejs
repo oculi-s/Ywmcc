@@ -1,0 +1,50 @@
+<% let re = ba.re(req); %>
+<dialog class="reset">
+    <button class="close fa fa-times"></button>
+    <form method="POST" action=<%-`/reset?re=${encodeURIComponent(req.query.re)}`%>>
+        <h3>비밀번호 재설정</h3>
+        <div>
+            <p>
+                <input type="text" name="id" placeholder="ID">
+                <span>@yonsei.ac.kr</span>
+            </p>
+            <button type="submit">재설정</button>
+        </div>
+    </form>
+</dialog>
+<link rel="stylesheet" href="/__source/__css/__dialog.css">
+<script type="module" src="/__source/__js/__dialog.js"></script>
+
+<script type="module">
+    import {
+        $
+    } from '/__source/__js/_.js';
+    let dialog = $('dialog.reset')
+    $('a').onclick = () => {
+        document.body.classList.add('blur');
+        dialog.open = true;
+    }
+</script>
+
+<style>
+    dialog {
+        background: #fff;
+        width: 80%;
+        max-width: 400px;
+        height: 300px;
+    }
+
+    dialog p {
+        font-size: 15px;
+        vertical-align: top;
+        margin: 5px auto;
+        border: 1px solid var(--main-border);
+    }
+
+    dialog form button {
+        width: 100%;
+        background: var(--blue) !important;
+        padding: 10px;
+        color: #fff;
+    }
+</style>

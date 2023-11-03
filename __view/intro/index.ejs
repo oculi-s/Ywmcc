@@ -1,0 +1,124 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/intro/index.css">
+    <script type="module" src="/__source/__js/__slide.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+</head>
+
+<body>
+    <%-include(d.header)%>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%-include(d.aside)%>
+            <article class="m-22">
+                <div>
+                    <h2>센터 소개</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <div>
+                    <h4>학생상담코칭센터 소개</h4>
+                    <div class="article">
+                        <h5>연세대학교 원주의과대학 <br class="p-h">학생상담코칭센터는,</h5>
+                        <br>
+                        <p> 의과대학 학생들이 <br class="p-h">학교생활에 보다 잘 적응하고 </p>
+                        <p> 심리적으로 건강하게 지낼 수 있도록 <br class="p-h">다양한 활동을 하고 있습니다.</p>
+                        <br>
+                        <p>학생들 각자 자신이 <br class="p-h">어떤 사람인지 이해하고 받아들이면서</p>
+                        <p>내면의 잠재력을 실현할 수 있는 <br class="p-h">길을 모색하도록<br class="p-h"> 심리상담 및 여러 프로그램을</p>
+                        <p>지원하고 있습니다.</p>
+                    </div>
+                    <h4>사명</h4>
+                    <div class="article">
+                        <p>원주의과대학의 사명을 이어받아</p>
+                        <br>
+                        <p>하나님의 사랑을 바탕으로, </p>
+                        <p>원주의과대학 학생들의 <br class="p-h">마음과 영혼을 돌보고 </p>
+                        <p>혁신적이고 창조적인 삶을 <br class="p-h">실현할 수 있도록 돕습니다. </p>
+                        <video class="lozad" autoplay muted loop playsinline poster="/__source/__img/main/main_vid.png">
+                            <source data-src="/__source/__img/main/main_vid.webm" type="video/webm">
+                            <source data-src="/__source/__img/main/main_vid.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div>
+                    <h4>학생상담코칭센터 구성원</h4>
+                    <div class="article">
+                        <div class="member">
+                            <span>
+                                <div></div>
+                                <dl>
+                                    <dt>최선주<span class="m-h"> </span><br class="p-h"><span>센터장</span></dt>
+                                    <dd>학생부학장</dd>
+                                    <dd>미생물학교실</dd>
+                                </dl>
+                            </span>
+                            <span>
+                                <div></div>
+                                <dl>
+                                    <dt>배윤주<span class="m-h"> </span><br class="p-h"><span>전임상담원</span></dt>
+                                    <dd>학생상담코칭센터</dd>
+                                    <dd class="flow">wmcc@yonsei.ac.kr</dd>
+                                </dl>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4>센터 사진</h4>
+                    <div class="article">
+                        <div class="image slide">
+                            <ul>
+                                <li class="left" name="1"><img src="/__source/__img/intro/center1.jpg"></li>
+                                <li class="left" name="2"><img src="/__source/__img/intro/center2.jpg"></li>
+                                <li class="center" name="3"><img src="/__source/__img/intro/center3.jpg"></li>
+                                <li class="right" name="4"><img src="/__source/__img/intro/center4.jpg"></li>
+                                <li class="right" name="5"><img src="/__source/__img/intro/center5.jpg"></li>
+                                <li class="right" name="6"><img src="/__source/__img/intro/center6.jpg"></li>
+                                <li class="right" name="7">
+                                    <video class="lozad" autoplay muted loop playsinline>
+                                        <source data-src="/__source/__img/intro/center0.webm" type="video/webm">
+                                        <source data-src="/__source/__img/intro/center0.mp4" type="video/mp4">
+                                    </video>
+                                </li>
+                            </ul>
+                            <div class="abs m-h">
+                                <button class="prev"><img src="/__source/__img/main/m_img_prev.png"></button>
+                                <button class="next"><img src="/__source/__img/main/m_img_next.png"></button>
+                            </div>
+                            <ol class="sel abs">
+                                <span>
+                                    <input id="c1" type="radio" name="view" value="1">
+                                    <label for="c1"></label>
+                                    <input id="c2" type="radio" name="view" value="2">
+                                    <label for="c2"></label>
+                                    <input id="c3" type="radio" name="view" value="3" checked=true>
+                                    <label for="c3"></label>
+                                    <input id="c4" type="radio" name="view" value="4">
+                                    <label for="c4"></label>
+                                    <input id="c5" type="radio" name="view" value="5">
+                                    <label for="c5"></label>
+                                    <input id="c6" type="radio" name="view" value="6">
+                                    <label for="c6"></label>
+                                    <input id="c7" type="radio" name="view" value="7">
+                                    <label for="c7"></label>
+                                </span>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+</body>
+
+</html>

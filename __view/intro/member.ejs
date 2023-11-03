@@ -1,0 +1,47 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/intro/member.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+</head>
+
+<body>
+    <%-include(d.header)%>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%-include(d.aside)%>
+            <article class="m-22">
+                <div>
+                    <h2 class="bg">위원회 소개</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <% for (let group in member) { %>
+                <h3 class="fa fa-caret-right"> <%-group%></h3>
+                <% for (let c of member[group]) { %>
+                <span>
+                    <div></div>
+                    <dl>
+                        <dt><%-c.name%></dt>
+                        <% if (c.position) { %>
+                        <dd><%-c.position%></dd>
+                        <% } %>
+                        <dd><%-c.major%></dd>
+                    </dl>
+                </span>
+                <% }} %>
+            </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+
+</body>
+
+</html>

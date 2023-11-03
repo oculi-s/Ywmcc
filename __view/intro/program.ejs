@@ -1,0 +1,135 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/__menu.css">
+    <link rel="stylesheet" href="/__source/__css/intro/program.css">
+    <script type="module" src="/__source/__js/program.js"></script>
+    <script type="module" src="/__source/__js/__menu.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+</head>
+
+<body>
+    <%-include(d.header)%>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%-include(d.aside)%>
+            <article class="m-22">
+                <div>
+                    <h2>프로그램안내</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <span class="sm1 p-h fa fa-angle-down">개인상담</span>
+                <ul class="sm2 m-h">
+                    <li class="active">개인상담</li>
+                    <li>심리검사</li>
+                    <li>멘토링</li>
+                    <li>그 외 프로그램</li>
+                </ul>
+                <div class="sm3">
+                    <article class="active">
+                        <h4>개인 상담</h4>
+                        <br>
+                        <p>상담은 현재의 심리적 어려움에 효과적으로 대처할 뿐 아니라,</p>
+                        <p>내면의 잠재력을 발견하면서 성장하는 과정입니다.</p>
+                        <br>
+                        <p>상담을 통하여 상담자는 심리적 고통을 유발하는 행동방식, 사고방식, 감정의 문제들을 다루고</p>
+                        <p>삶에 변화가 일어나도록 돕습니다.</p>
+                        <br>
+                        <p>상담은 대면 또는 비대면(줌)으로도 가능하며</p>
+                        <p>보통 1주일에 1번씩 1:1로 이루어집니다.</p>
+                        <br>
+                        <p>시간은 1회에 40~50분 정도로 진행되며,</p>
+                        <p>모든 상담내용과 사적 정보는 비밀 유지됩니다.</p>
+                        <table class="t1 ts">
+                            <colgroup>
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="25%">
+                            </colgroup>
+                            <caption>다양한 상담 영역</caption>
+                            <tr>
+                                <td>Suicidal thoughts</td>
+                                <td>Approaches to study and study difficulties</td>
+                                <td>Family difficulties</td>
+                                <td>Relationships and sexual issues</td>
+                            </tr>
+                            <tr>
+                                <td>Grief or Anger management</td>
+                                <td>Stress, Anxiety and Depression</td>
+                                <td>Identity, Self-esteem and Confidence issues</td>
+                                <td>Personal unhappiness and distress</td>
+                            </tr>
+                        </table>
+                    </article>
+                    <article>
+                        <% let sub = program.test %>
+                        <% let infos = ['target','prepare','number','time']; %>
+                        <h4><%- sub.name %></h4>
+                        <% for (let e of sub.data) { %>
+                        <h5><%- e.name %></h5>
+                        <div>
+                            <table class="t2">
+                                <% for (let row of e.data) { %>
+                                <tr>
+                                    <% for (let col of row) { %>
+                                    <th <%- `colspan=${col.span || ''}` %>>
+                                        <label>
+                                            <input type="checkbox">
+                                            <span class="ts"><i class=fa></i><%- col.name %></span>
+                                        </label>
+                                        <dl class="d">
+                                            <dt> <%- col.description %> </dt>
+                                            <ul class="ts">
+                                                <% for (let i of infos) { %>
+                                                <% if (col.information[i]) { %>
+                                                <li><%- col.information[i] %></li>
+                                                <% } %>
+                                                <% } %>
+                                            </ul>
+                                        </dl>
+                                    </th>
+                                    <% } %>
+                                </tr>
+                                <% } %>
+                            </table>
+                        </div>
+                        <% } %>
+                    </article>
+                    <article>
+                        <h4>멘토링 프로그램</h4>
+                        <br>
+                        <h5>(1) 선∙후배 간의 1:1 매칭, 연결고리 멘토링</h5>
+                        <p>학기 시작 초반에 연결고리 멘토와 멘티 학생들의 신청을 받아 선발합니다.</p>
+                        <p>한 학기 동안 매칭된 멘토 멘티가 한 팀이 되어 멘티의 학업과 대학생활을 전반적으로 돕습니다.</p>
+                        <br>
+                        <h5>(2) 교수님과의 1:1 매칭, 리질리언스 멘토링</h5>
+                        <p>리질리언스 위원회에 소속되어 계시는 12명의 교수님들 중에</p>
+                        <p>한 분과 1:1매칭되어, 다양한 주제로 소통하고 조언을 얻을 수 있습니다.</p>
+                    </article>
+                    <article>
+                        <h4>그 외 프로그램</h4>
+                        <br>
+                        <h5>(1) 학습계획상담 및 학습코칭</h5>
+                        <h5>(2) 진로 탐색 프로그램</h5>
+                        <h5>(3) 폭력예방교육</h5>
+                        <h5>(4) 다양한 집단 상담 프로그램</h5>
+                        <h5>(5) 심리검사를 활용한 워크샵</h5>
+                    </article>
+                </div>
+            </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+
+</body>
+
+</html>

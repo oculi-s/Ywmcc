@@ -1,0 +1,43 @@
+<script type="module">
+    import {
+        $
+    } from "/__source/__js/_.js";
+
+    let uid = Object.fromEntries(new URLSearchParams(location.search)).uid;
+    let edit = $('.admin .edit');
+    let del = $('.admin .del');
+    let add = $('.admin .add');
+
+    if (edit) {
+        document.onkeydown = e => {
+            if (e.ctrlKey && e.keyCode == 69) {
+                e.preventDefault();
+                edit.click();
+            }
+        }
+        edit.onclick = e => {
+            e.stopPropagation();
+            if (uid) {
+                location.href = `/board/edit?uid=${uid}`;
+            }
+        }
+    }
+
+    if (del) {
+        del.onclick = e => {
+            e.stopPropagation();
+            if (confirm('공지를 삭제하시겠습니까?')) {
+                if (uid) {
+                    location.href = `/board/del?uid=${uid}`;
+                }
+            }
+        }
+    }
+
+    if (add) {
+        add.onclick = e => {
+            e.stopPropagation();
+            location.href = `/board/add`;
+        }
+    }
+</script>

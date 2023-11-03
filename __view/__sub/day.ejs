@@ -1,0 +1,7 @@
+<h3>시간 선택</h3>
+<% for (let r of cald.data.day.row) { %>
+<% if (status.data[r-1] == 0) { %>
+<input id="<%-`t${r}`%>" type="radio" name="t" data-time="<%- cald.data.day.time[r-1] %>">
+<label class="<%-`t${r}`%>" for="<%-`t${r}`%>"><%- cald.header.time[r-1] %><br></label>
+<% } %>
+<% } %>

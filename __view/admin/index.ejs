@@ -1,0 +1,226 @@
+
+<html>
+
+<head>
+    <title>관리자페이지</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico" />
+    <link rel="stylesheet" href="/__source/__css/main.css" />
+    <link rel="stylesheet" href="/__source/__css/__menu.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/admin.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/board.css" />
+    <script type="module" src="/__source/__js/__menu.js"></script>
+    <script type="module" src="/__source/__js/admin/index.js"></script>
+</head>
+
+<body>
+    <div class="git">
+        <a class="fa fa-long-arrow-down pull" style="padding-right:2;" href="/__/git/pull"></a>
+        <a class="fa fa-long-arrow-up push" style="padding-left:2;" href="/__/git/add"></a>
+    </div>
+    <div class="a-0">
+        <% let tdays = Object.values(test).filter(e=>Object.keys(e).length).map(e=>Object.keys(e)); %>
+        <% let adays = Object.values(apply).filter(e=>Object.keys(e).length).map(e=>Object.keys(e)); %>
+        <% tdays = tdays.map(e=>e.filter(c=>c != 'hidden' && date.sdate(c) == date.sdate())) %>
+        <% adays = adays.map(e=>e.filter(c=>c != 'hidden' && new Date(c) >= new Date())) %>
+        <a href="/"><i class="fa fa-arrow-left"></i> 홈으로</a>
+        <% let tcount = tdays.map(e=>e.length).reduce((a,b)=>a+b); %>
+        <% let acount = adays.map(e=>e.length).reduce((a,b)=>a+b); %>
+        <span><span class=m-h>진행예정 </span>상담 : <span class="n"><%- acount %></span>건 / <span class=m-h>당일 신규</span>검사 : <span class="n"><%- tcount %></span>건</span>
+    </div>
+    <div class="a-1">
+        <p class="des">상담가능시간 오전 10시,11시/ 오후 15시,16시</p>
+        <div>
+            <span class="red color"></span>
+            <span>신청 불가</span>
+            <span class="blue color"></span>
+            <span>신청 가능</span>
+            <span class="grey color"></span>
+            <span>신청 완료</span>
+        </div>
+        <%- include(ba.d.admin.calendar) %>
+        <button class="edit">저장</button>
+        <button onclick="location.href=`/admin/add`">추가</button>
+	<div style="border:1px solid var(--main-border);border-radius:10px;padding:20px;font-size:12px;margin:10px auto;text-align:left;">
+	<p>구현예정</p>
+	<ol>
+		<li>1. 상담개별 클릭시 자세히보기/수정</li>
+		<li>2. 상담내역 엑셀 다운로드, 확대UI 수정</li>
+		<li>3. 검사 통계, 엑셀 다운로드 기능</li>
+		<li>4. 검사/상담 시 카톡알림 기능</li>
+		<li>5. IP주소 대체할 새로운 ID부여하기</li>
+		<li>6. 이 캘린더 아래 공간 사용할 방법 생각</li>
+	</ol>
+	</div>
+    </div>
+    <div class="a-2">
+        <span class="sm1 p-h fa fa-angle-down">상담관리</span>
+        <ul class="sm2 m-h">
+            <li class="active">상담관리</li>
+            <li>학생목록</li>
+            <li>공지관리</li>
+        </ul>
+        <div class="sm3">
+            <article class="active apply">
+                <span>
+                    <h3><a href="/admin/apply/">상담내역 <i class="fa fa-chevron-right"></i></a></h3>
+                    <label>
+                        <input type="checkbox" name="h">
+                        과거/삭제 내역 보기
+                    </label>
+                </span>
+                <div class="a-21"> <%- include(ba.d.admin.alist, {comment:false, color:false, before:false}) %></div>
+                <h3>
+                    <a href="/admin/test/">검사내역 <i class="fa fa-chevron-right"></i></a>
+                </h3>
+                <p class="des">* 미입력 = 상담을 신청하지 않아 이름 입력이 안된 경우</p>
+                <p class="des">* IP주소 = 로그인 하지 않은 상태로 검사를 진행한 경우</p>
+                <p class="des">(ip주소 수집은 법적인 문제가 있어 수정예정)</p>
+                <div class="a-22"><%- include(ba.d.admin.tlist) %></div>
+            </article>
+            <article class="user">
+                <h3>유저 목록</h3>
+                <p class="des">* 검사나 상담을 1회이상 진행한 학생만 표시됩니다.</p>
+                <div class="a-21">
+                    <table>
+                        <colgroup>
+                            <col width="12%">
+                            <col width="12%" class="m-h">
+                            <col width="10%" class="m-h">
+                            <col width="10%" class="m-h">
+                            <col width="20%" class="m-h">
+                            <col width="12%">
+                            <col width="12%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>이름</th>
+                                <th class="m-h">성별</th>
+                                <th class="m-h">학과</th>
+                                <th class="m-h">학년</th>
+                                <th class="m-h">전화번호</th>
+                                <th>상담횟수</th>
+                                <th>검사횟수</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let none = '<i class="none">미입력</i>'%>
+                            <% for (let k in user) { %>
+                            <% if (auser[k]) { %>
+                            <% if (!auser[k].admin) { %>
+                            <tr onclick="location.href='<%- `/admin/user?uid=${k}` %>'">
+                                <td><%- user[k].c1 || none %></td>
+                                <td class="m-h"><%- meta.radio.b1.data[user[k].b1] %></td>
+                                <td class="m-h"><%- meta.radio.b2.data[user[k].b2] %></td>
+                                <td class="m-h"><%- meta.radio.b3.data[user[k].b2][user[k].b3] %></td>
+                                <td class="m-h"><%- user[k].c2 || none %></td>
+                                <td><%- Object.keys(ba.json(ba.d.admin.apply(k))).filter(e=>e!='hidden').length %></td>
+                                <td><%- Object.keys(ba.json(ba.d.admin.test(k))).length %></td>
+                            </tr>
+                            <% } %>
+                            <% } %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <h3>이메일 미인증 유저</h3>
+                <p class="des">* 이메일 인증이 완료되지 않은 유저를 표시합니다.</p>
+                <div class="a-21">
+                    <table>
+                        <colgroup>
+                            <col width="*">
+                            <col width="12%">
+                            <col width="12%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>인증</th>
+                                <th>삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let k of unverified) { %>
+                            <tr>
+                                <td><%- k.id %></a></td>
+                                <td><a class="u" href="<%- `/admin/verify?uid=${k.uid}` %>">인증</a></td>
+                                <td><a class="fa fa-times" href="<%- `/admin/del?uid=${k.uid}` %>"></a></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <h3>미참여유저</h3>
+                <p class="des">* 검사 및 상담을 한번도 진행하지 않은 유저를 표시합니다.</p>
+                <div class="a-21">
+                    <table>
+                        <colgroup>
+                            <col width="*">
+                            <col width="12%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>인증여부</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let udeny = ['test', 'wmcc']; %>
+                            <% for (let k in auser) { %>
+                            <% if (!user[k] && k != 'index') { %>
+                            <% if (!udeny.includes(auser[k].id)) { %>
+                            <tr>
+                                <td><%- auser[k].id %></a></td>
+                                <td><%- auser[k].verified ? 'O':'X' %></td>
+                            </tr>
+                            <% } %>
+                            <% } %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+            <article class="board">
+                <div>
+                    <div class="admin">
+                        <button class="add">글쓰기</button>
+                        <span>
+                            <span class="color grey"></span>
+                            <span>비공개 공지</span>
+                        </span>
+                    </div>
+                    <table>
+                        <colgroup>
+                            <col width="110px">
+                            <col width="60px">
+                            <col width="*">
+                            <col width="50px">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>시간</th>
+                                <th>제목</th>
+                                <th>삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let e of board.data.sort((a,b)=>new Date(`${b.date} ${b.time}`)-new Date(`${a.date} ${a.time}`))) { %>
+                            <tr <%- e.admin?'class="grey"':'' %>>
+                                <td><%- e.date %></td>
+                                <td><%- e.time %></td>
+                                <td><a class="u" href="<%-`/board/edit?uid=${e.uid}`%>"><%- e.title %></a></td>
+                                <td class="del"><i class="fa fa-times"></i></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+
+</html>

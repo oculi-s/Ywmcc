@@ -1,0 +1,52 @@
+{
+    "intro": {
+        "name": "학생상담코칭센터 소개",
+        "aside": "센터 소개",
+        "child": [
+            { "name": "센터 소개", "href": "/intro/" },
+            { "name": "위원회 소개", "href": "/intro/member/" },
+            { "name": "프로그램 안내", "href": "/intro/program/" },
+            { "name": "오시는 길", "href": "/intro/location/" }
+        ]
+    },
+    "apply": {
+        "name": "상담신청",
+        "child": [
+            { "name": "상담 신청", "href": "/apply/" },
+            { "name": "신청내역", "href": "/user/", "auth": true }
+        ]
+    },
+    "board": {
+        "name": "공지사항",
+        "child": [
+            { "name": "공지사항", "href": "/board/" },
+            { "name": "프로그램 후기", "href": "/board/review/" }
+        ]
+    },
+    "test": {
+        "name": "자가검사",
+        "child": [
+            { "name": "자가 진단 검사", "href": "/test/", "aside": "자가검사" },
+            { "name": "검사내역", "href": "/user/test", "auth": true }
+        ]
+    },
+    "user": {
+        "name": "마이페이지",
+        "auth": true,
+        "admin": false,
+        "child": [
+            { "name": "상담내역", "href": "/user/", "auth": true },
+            { "name": "검사내역", "href": "/user/test", "auth": true },
+            { "name": "로그아웃", "href": "javascript:logOut();", "auth": true }
+        ]
+    },
+    "admin": {
+        "name": "관리자페이지",
+        "auth": true,
+        "admin": true,
+        "child": [
+            { "name": "관리자페이지", "href": "/admin/", "auth": true },
+            { "name": "로그아웃", "href": "javascript:logOut();", "auth": true }
+        ]
+    }
+}

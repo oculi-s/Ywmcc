@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>검사 내역</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico" />
+    <link rel="stylesheet" href="/__source/__css/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/admin.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/test.css" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
+</head>
+
+<body>
+    <div class="a-0">
+        <a href="/admin/"><i class="fa fa-arrow-left"></i> 뒤로가기</a>
+        <% let now = ba.now(1); %>
+        <% let dcount = [].concat(...Object.values(test).map(e=>Object.keys(e))).filter(e=>e.split(' ')[0]==now.split(' ')[0]).length %>
+        <% let tcount = Object.values(test).map(e=>Object.keys(e).length).reduce((a,b)=>a+b); %>
+        <span>신규검사 : <span class="n"><%- dcount %></span>건 / 전체검사 : <span class="n"><%- tcount %></span>건</span>
+    </div>
+    <div class="a-2">
+        <div class="a-20">
+            <table>
+                <colgroup>
+                    <col width="40px">
+                    <col width="*">
+                </colgroup>
+                <tr>
+                    <th>날짜</th>
+                    <td>
+                        시작 <input id="st" type="date"> / 끝 <input id="et" type="date">
+                    </td>
+                </tr>
+                <% for (let d in meta.radio) { %>
+                <% let c = meta.radio[d] %>
+                <tr id="<%- d %>">
+                    <th><%- c.name %></th>
+                    <td>
+                        <label><input type="checkbox" value="0"> 전체</label>
+                        <% if (c.span == 1){ %>
+                        <% for (let e in c.data) { %>
+                        <% for (let f in c.data[e]) { %>
+                        <label><input type="checkbox" value=<%- c.data[e][f] %>> <%- c.data[e][f] %></label>
+                        <% } %>
+                        <br>
+                        <% } %>
+                        <% } else { %>
+                        <% for (let e in c.data) { %>
+                        <label><input type="checkbox" value=<%- c.data[e] %>> <%- c.data[e] %></label>
+                        <% } %>
+                        <% } %>
+                    </td>
+                </tr>
+                <% } %>
+                <tr id="type">
+                    <th>유형</th>
+                    <td>
+                        <label> <input type="checkbox" value="0"> 전체</label>
+                        <label> <input type="checkbox" value="우울"> 우울</label>
+                        <label> <input type="checkbox" value="불안"> 불안</label>
+                        <label> <input type="checkbox" value="스트레스"> 스트레스</label>
+                    </td>
+                </tr>
+            </table>
+
+            <button class="calc">통계</button>
+            <button class="down">다운로드</button>
+        </div>
+        <div class="a-22"> <%- include(ba.d.admin.tlist) %> </div>
+        <div class="a-22">
+            <% let depress = Object.values(test).map(e=>Object.keys(e).length).reduce((a,b)=>a+b); %>
+            <% let anxiety = Object.values(test).map(e=>Object.keys(e).length).reduce((a,b)=>a+b); %>
+            <% let stress = Object.values(test).map(e=>Object.keys(e).length).reduce((a,b)=>a+b); %>
+            <h4>우울 통계</h4>
+            <span>전체 <span class="n" id="nd0"></span>건 / 평균 <span class="n" id="ad0"></span>점</span>
+            <div class="c" id="d0">1,2</div>
+            <h4>불안 통계</h4>
+            <span>전체 <span class="n" id="nd1"></span>건 / 평균 <span class="n" id="ad1"></span>점</span>
+            <div class="c" id="d1"></div>
+            <h4>스트레스 통계</h4>
+            <span>전체 <span class="n" id="nd2"></span>건 / 평균 <span class="n" id="ad2"></span>점</span>
+            <div class="c" id="d2"></div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

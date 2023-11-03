@@ -1,0 +1,81 @@
+<% let curr = date.now() %>
+<% let week = date.week() %>
+<% let month = date.month() %>
+<% let status = ba.json(ba.d.status) %>
+<article class="calendar admin">
+    <div class="date">
+        <div class="chead">
+            <% for (let d of cald.header.day) { %>
+            <span><%- d %></span>
+            <% } %>
+        </div>
+        <div class="cbody">
+            <% for (let c of cald.data.date.col) { %>
+            <div>
+                <div class="ccol">
+                    <% for (let r of cald.data.date.row) { %>
+                    <% let day = month[r-1][c]; %>
+                    <% let sday = Array(cald.data.day.row.length).fill(0) %>
+                    <% let ddata = ba.json(ba.d.day(day)).data || sday %>
+                    <% let slist = ['blue', 'grey', ''] %>
+                    <% let tlist = [10, 11, 15, 16]; %>
+                    <% if (curr < new Date(day)) { %>
+                    <% let sdate = date.format(day).split('/').join('<br>') %>
+                    <div class=<%- status[day] == false ?'closed':'aday' %> data-day="<%- day %>">
+                        <span><%- sdate %></span>
+                        <div class="time">
+                            <% for (let i in ddata) { %>
+                            <% let d = ddata[i]; %>
+                            <% let stats = slist[d]; %>
+                            <% if (d != 1) { %>
+                            <input <%- d?'checked':'' %> type=checkbox data-day="<%- day %>" data-time="<%- cald.data.day.time[i] %>" id="<%- `t${c}${r}${i}` %>">
+                            <% } %>
+                            <label class="color <%- stats %>" for="<%- `t${c}${r}${i}` %>"><%- tlist[i] %></label>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% } else { %>
+                    <div class=before>
+                        <span><%- date.format(day) %></span>
+                    </div>
+                    <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</article>
+<style>
+    .grey {
+        cursor: default;
+    }
+
+    .calendar {
+        text-align: left;
+    }
+
+    .admin .date {
+        width: 100% !important;
+    }
+
+    .admin .date .ccol>*:not(input) {
+        height: calc(100% / <%- cald.data.date.row.length %>);
+    }
+
+    .calendar.admin label {
+        border: 1px solid var(--footer-text) !important;
+        font-size: 10px;
+    }
+
+    .calendar.admin input:not(:checked)+label {
+        background: #eaf7fd;
+    }
+
+    .calendar.admin input:checked+label {
+        background: var(--red) !important;
+        color: #fff;
+    }
+</style>
+<link rel="stylesheet" href="/__source/__css/__calendar.css">
+<script type="module" src="/__source/__js/admin/calendar.js"></script>

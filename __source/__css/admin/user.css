@@ -1,0 +1,75 @@
+.a-20,
+.a-21 {
+    text-align: right;
+}
+
+.a-21>div {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.a-21>div>* {
+    vertical-align: middle;
+}
+
+.meta td {
+    text-align: left;
+}
+
+.a-1 img {
+    width: 40%;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.e .a-1 {
+    width: 0%;
+    overflow: hidden;
+    max-width: 0%;
+    padding: 0;
+    margin: 0;
+    border: 0ch;
+    opacity: 0;
+    transition: all .5s;
+}
+
+.e .a-22 {
+    opacity: 0;
+    height: 0;
+    min-height: 0;
+    transition: all .5s;
+}
+
+.e .a-2 {
+    width: 95%;
+    transition: all .5s;
+    transition-delay: .3s;
+}
+
+.a-1,
+.a-2,
+.a-22,
+.e * {
+    transition: all .5s;
+}
+
+@media screen and (max-width:768px) {
+    .e .a-1,
+    .e .a-22 {
+        display: none;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .a-1,
+    .a-22 {
+        transition-delay: .5s;
+    }
+}
+
+
+/* .c, .t{
+    display: block;
+    width: 100%;
+} */

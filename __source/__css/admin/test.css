@@ -1,0 +1,93 @@
+.a-2 {
+    min-height: 90%;
+    width: 90%;
+}
+
+.a-20 {
+    min-height: unset;
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.a-20>* {
+    vertical-align: top;
+}
+
+.a-20 table {
+    max-width: 500px;
+    margin: auto;
+    border-top: 4px solid var(--blue);
+    border-bottom: 4px solid var(--blue);
+}
+
+.a-20 label {
+    text-align: left;
+}
+
+.a-22>div>* {
+    vertical-align: middle;
+}
+
+.a-22 table {
+    margin: auto;
+    width: unset;
+}
+
+.a-22 {
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media screen and (min-width:768px) {
+    .a-22 {
+        width: 45%;
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .a-22 {
+        width: 100%;
+    }
+    table * {
+        padding: 0;
+    }
+}
+
+h4 {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+h4::before {
+    content: "";
+    background: url('/__source/__img/h4_before.png') no-repeat;
+    background-size: 13px;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.a-22>span {
+    font-size: 15px;
+    display: block;
+    text-align: left;
+}
+
+.c {
+    width: 100%;
+}
+
+tr>* {
+    padding: 5px 0 !important;
+}
+
+tr {
+    height: unset;
+}
+
+td {
+    white-space: unset !important;
+}

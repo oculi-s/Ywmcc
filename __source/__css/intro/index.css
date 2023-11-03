@@ -1,0 +1,141 @@
+.article * {
+    font-family: 'Yonsei';
+}
+
+.member {
+    margin: auto;
+    border-spacing: 20px;
+}
+
+.member>* {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.member>*>div {
+    width: 100%;
+    padding-top: 119.5%;
+    background: url(/__source/__img/intro/thumbnail.jpg) no-repeat;
+    background-size: 100% auto;
+    border: 1px solid #d8d8d8;
+    height: 0;
+}
+
+.member dl {
+    vertical-align: top;
+    padding: 0 10px;
+}
+
+.member dl>dt {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 10px auto;
+    line-height: 1;
+    color: var(--deep-blue);
+}
+
+.member dl>dt>span {
+    font-size: 20px;
+}
+
+.member dl>dd {
+    margin: 5px 0;
+    color: var(--light-blue);
+}
+
+.image {
+    height: 400px;
+}
+
+.image>div {
+    margin-bottom: 40px;
+}
+
+.image li>* {
+    max-width: 100%;
+    max-height: calc(100% - 60px);
+    width: auto !important;
+    height: auto;
+    position: absolute;
+    top: 30px;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0 !important;
+    box-shadow: 0px 0px 5px 5px var(--main-border);
+}
+
+.image .sel {
+    top: calc(100% - 20px);
+}
+
+.article {
+    padding: 50px 0;
+    text-align: center;
+    box-shadow: 0px 0px 5px 5px var(--main-border);
+}
+
+.article h5 {
+    font-family: 'Yonsei';
+    color: var(--deep-blue);
+    font-weight: 500;
+    text-indent: -30px;
+    text-shadow: 1px 1px var(--footer-text);
+}
+
+.article h5::before {
+    content: "";
+    background: url("/__source/__img/logo_basic.png") no-repeat;
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+    margin-right: 5px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.article p {
+    font-family: 'Yonsei';
+}
+
+@media screen and (min-width:768px) {
+    .article {
+        margin: 10px 30px;
+    }
+    .article h5 {
+        font-size: 30px;
+        padding-left: 40px;
+    }
+    .article p {
+        padding-left: 30px;
+    }
+    .member>* {
+        vertical-align: top;
+        width: 25%;
+    }
+    .m-22 video {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .article {
+        margin: 10px;
+    }
+    .article h5 {
+        font-size: 20px;
+    }
+    .member>* {
+        width: 40%;
+    }
+    .flow {
+        font-size: 13px;
+    }
+}
+
+.m-22 video {
+    max-width: 100%;
+    padding: 10px;
+}

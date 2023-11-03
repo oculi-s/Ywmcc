@@ -1,0 +1,80 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/user.css">
+    <link rel="stylesheet" href="/__source/__css/__table.css">
+    <script type="module" src="/__source/__js/user.js"></script>
+</head>
+
+<body>
+    <%- include(d.header) %>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%- include(d.aside) %>
+            <article class="m-22">
+                <div>
+                    <h2>상담내역</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <p>상담 내역을 수정/삭제하고 상담 후기를 읽어볼 수 있습니다.</p>
+                <label>
+                    <input type="checkbox" name=h>
+                    이전 상담 내역 보기
+                </label>
+                <table>
+                    <colgroup>
+                        <col width="8%">
+                        <col width="8%">
+                        <col width="*" class="m-h">
+                        <col width="*">
+                        <col width="80px" class="m-h">
+                        <col width="100px">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>날짜</th>
+                            <th>시간</th>
+                            <th class="m-h">내용</th>
+                            <th>상담 후기</th>
+                            <th class="m-h">상태</th>
+                            <th>수정/삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let now = date.now(); %>
+                        <% for (let e of Object.keys(user).filter(e=>e!='hidden').sort((a,b)=>new Date(b)-new Date(a))) { %>
+                        <% let after = date.now(e) < now %>
+                        <tr class="<%- after?"d":"" %>" data-day="<%- e.split(' ')[0] %>" data-time="<%- e.split(' ')[1] %>">
+                            <td><%- date.format(e) %></td>
+                            <td><%- date.time(e) %></td>
+                            <td class="m-h"><%- user[e].about %></td>
+                            <td><%- user[e].comment || '' %></td>
+                            <td class="m-h"><%- after?"상담완료":"신청완료" %></td>
+                            <td>
+                                <% if (after) { %>
+                                <button class="info">보기</button>
+                                <% } else { %>
+                                <button class="edit">수정</button><i class="fa fa-times del"></i>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </article>
+            <%- include(d.dialog.edit) %>
+            <%- include(d.dialog.info) %>
+        </div>
+    </section>
+    <%- include(d.footer) %>
+</body>
+
+</html>

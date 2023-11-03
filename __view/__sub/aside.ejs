@@ -1,0 +1,25 @@
+<aside class="m-21">
+    <a href='/' class="p-h fa fa-home"></a>
+    <% let now = req.originalUrl.split('?')[0]; %>
+    <% let url = now.split('/').filter(e=>e); %>
+    <span href=<%-`/${url[0]}/`%> class="p-h foldable"><%- menu[url[0]].aside || menu[url[0]].name %></span>
+    <ul class="p-h d">
+        <% for (let e in menu) { %>
+        <% if ((menu[e].auth == undefined || menu[e].auth == auth) && (menu[e].admin == undefined || menu[e].admin == admin)) { %>
+        <a href=<%-`/${e}/`%> class=<%- `"${url[0] == e ? ' active':''}"` %>><%- menu[e].aside || menu[e].name %></a>
+        <% }} %>
+    </ul>
+    <div>
+        <% now = menu[url[0]].child.find(e=>e.href.replace(/\//g, '') == now.replace(/\//g, '')) || menu[url[0]]; %>
+        <h3 class="foldable m-h"><%- menu[url[0]].aside || menu[url[0]].name %></h3>
+        <h3 class="foldable p-h"><%- now.aside || now.name %></h3>
+        <ul>
+            <% for (let c of menu[url[0]].child) { %>
+            <% if ((c.auth == undefined || c.auth == auth) && (c.admin == undefined || c.admin == admin)) { %>
+            <a href=<%- c.href %> <%- now.href==c.href?"class=active":"" %>><%- c.name %></a>
+            <% }} %>
+        </ul>
+    </div>
+</aside>
+<link rel="stylesheet" href="/__source/__css/__aside.css">
+<script type="module" src="/__source/__js/__aside.js"></script>

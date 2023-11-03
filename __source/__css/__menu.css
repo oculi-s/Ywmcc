@@ -1,0 +1,63 @@
+.sm2 {
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.sm2 * {
+    cursor: pointer;
+}
+
+.sm3>* {
+    display: none;
+}
+
+.sm3 .active {
+    display: block;
+}
+
+@media screen and (min-width:768px) {
+    .sm2 {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+    }
+    .sm2>* {
+        padding: 15px 0;
+        text-align: center;
+        background: #cbcbcb;
+        display: table-cell;
+    }
+    .sm2 .active {
+        background: var(--blue);
+        color: #fff;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .sm1 {
+        display: block;
+        background: var(--blue);
+        color: #fff;
+        padding: 13px 10px;
+        cursor: pointer;
+    }
+    .sm1::before {
+        float: right;
+    }
+    .sm2 {
+        padding: 0;
+        position: absolute;
+        width: calc(100% - 20px);
+        z-index: 9999;
+    }
+    .sm2>* {
+        padding: 5px 10px;
+        text-align: left;
+        background: var(--blue);
+        display: block;
+        color: #fff;
+    }
+    .sm2 .active {
+        background: var(--light-blue);
+    }
+}

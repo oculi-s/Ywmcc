@@ -1,0 +1,91 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/__table.css">
+    <link rel="stylesheet" href="/__source/__css/board.css">
+    <script type="module" src="/__source/__js/board.js"></script>
+</head>
+
+<body>
+    <%- include(d.header) %>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%- include(d.aside)%>
+            <article class="m-22">
+                <div>
+                    <h2>공지사항</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <% board = board.sort((a,b)=>new Date(`${b.date} ${b.time}`)-new Date(`${a.date} ${a.time}`)) %>
+                <% board = board.filter(e=>!e.admin || e.admin == admin) %>
+                <% let curr = board.find(e => e.uid == req.query.uid); %>
+                <% let i = board.indexOf(curr); %>
+                <% let prev = i>0 ? board[i-1]:null %>
+                <% let next = i<board.length ? board[i+1]:null %>
+                <% if (admin) { %>
+                <div class=admin>
+                    <%- include(ba.d.admin.js.board) %>
+                    <link rel="stylesheet" href="/__source/__css/admin/board.css">
+                    <button class="add">글쓰기</button>
+                    <button class="edit">수정</button>
+                    <button class="del">삭제</button>
+                </div>
+                <% } %>
+                <table class="b-meta table">
+                    <thead>
+                        <tr>
+                            <th><%- curr.title %></th>
+                            <td><%- `${curr.date.replace(/-/g,'/').slice(2)} ${curr.time}` %></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><%- curr.author %></th>
+                            <td><a href="javascript:window.print()" class="fa fa-print"></a> <a href="/board/" class="u">목록으로</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <% let sum = dict=> Object.values(dict || {}).reduce((a,b) => a+b, 0) %>
+                <p class=b-hit>조회수 <%- Object.values(hit).map(e=>sum(e)).reduce((a,b)=>a+b, 0); %>회</p>
+                <div class="b-main">
+                    <%- include(ba.d.board.data(req.query.uid)) %>
+                </div>
+                <table class="b-portal table">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <% if (prev) { %>
+                                <a href=<%- `/board?uid=${prev.uid}` %>>
+                                    <b><i class="fa fa-angle-left"></i> 이전</b>
+                                    <xmp><%- prev.title %></xmp>
+                                </a>
+                                <% } %>
+                            </th>
+                            <td>
+                                <% if (next) { %>
+                                <a href=<%- `/board?uid=${next.uid}` %>>
+                                    <xmp><%- next.title %></xmp>
+                                    <b>다음 <i class="fa fa-angle-right"></i></b>
+                                </a>
+                                <% } %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+</body>
+
+</html>

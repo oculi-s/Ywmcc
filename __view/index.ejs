@@ -1,0 +1,108 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/index.css">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <script type="module" src="/__source/__js/__slide.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+</head>
+
+<body>
+    <%-include(d.header)%>
+    <section>
+        <div class="m-img slide">
+            <ul>
+                <li class="left" name="1"><img src="/__source/__img/main/main_img1.png"></li>
+                <li class="left" name="2"><img src="/__source/__img/main/main_img2.png"></li>
+                <li class="center" name="1"><img src="/__source/__img/main/main_img1.png"></li>
+                <li class="right" name="2"><img src="/__source/__img/main/main_img2.png"></li>
+            </ul>
+            <div class="abs m-h">
+                <button class="prev"><img src="/__source/__img/main/m_img_prev.png"></button>
+                <button class="next"><img src="/__source/__img/main/m_img_next.png"></button>
+            </div>
+            <span class="abs">
+                <div>
+                    <p>연세대학교 <br class="p-h">원주의과대학</p>
+                    <p>학생상담코칭센터</p>
+                </div>
+            </span>
+            <ol class="sel abs">
+                <span>
+                    <input id="c1" type=radio name="view" value="1" checked="true">
+                    <label for="c1"></label>
+                    <input id="c2" type=radio name="view" value="2">
+                    <label for="c2"></label>
+                </span>
+            </ol>
+        </div>
+        <div class="m-1 bg">
+            <div>심리상담 문의
+                <br>
+                <text>(개인상담, 심리검사, 멘토링)</text>
+            </div>
+            <dl>
+                <ul>
+                    <li>
+                        <span>전화</span>
+                        <p> 033-741-0246</p>
+                    </li>
+                    <li>
+                        <span>위치</span>
+                        <p> 상담센터 : 의학관 310호<br>상담실 : 308호</p>
+                    </li>
+                    <li>
+                        <span>이메일</span>
+                        <p> <a href=mailto:wmcc@yonsei.ac.kr>wmcc@yonsei.ac.kr</a></p>
+                    </li>
+                    <li>
+                        <span>시간</span>
+                        <p> 월 ~ 금 (오전 8시 30분부터 ~ 오후 5시 30분까지)</p>
+                    </li>
+                </ul>
+                <dd>
+                    <a class="btn" href="mailto:wmcc@yonsei.ac.kr">이메일 문의하기</a>
+                    <a class="btn" href="https://pf.kakao.com/_GPIss/chat"><img src="/__source/__img/main/kakaotalk.png"></a>
+                    <a class="btn" href="/apply/">상담신청</a>
+                </dd>
+            </dl>
+        </div>
+        <div class="m-2 bg">
+            <article class="m-21">
+                <dl>
+                    <a href="/board/"><img src="/__source/__img/main/board.png"></a>
+                    <dt>알림</dt>
+                    <dd>
+                        <ul>
+                            <% board.data = board.data.sort((a,b)=>new Date(`${b.date} ${b.time}`)-new Date(`${a.date} ${a.time}`)) %>
+                            <% board.data = board.data.filter(e=>!e.admin || e.admin == admin) %>
+                            <% for (let e of board.data.slice(0, 4)){ %>
+                            <li>
+                                <span><%-e.date%></span>
+                                <a href=<%-`/board?uid=${encodeURI(e.uid)}`%>><%-e.title%></a>
+                            </li>
+                            <% }%>
+                        </ul>
+                    </dd>
+                </dl>
+            </article>
+            <article class="m-22 bg">
+                <% let sum = dict=> Object.values(dict || {}).reduce((a,b) => a+b, 0) %>
+                <p class=hit>Today <%- sum(hit[date.sdate()]) %> Total <%- Object.values(hit).map(e=>sum(e)).reduce((a,b)=>a+b, 0); %></p>
+                <video class="lozad" autoplay muted loop playsinline poster="/__source/__img/main/main_vid.png">
+                    <source data-src="/__source/__img/main/main_vid.webm" type="video/webm">
+                    <source data-src="/__source/__img/main/main_vid.mp4" type="video/mp4">
+                </video>
+            </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+</body>
+
+</html>

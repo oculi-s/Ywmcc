@@ -1,0 +1,47 @@
+<% let curr = date.now() %>
+<% let week = date.week() %>
+<% let month = date.month() %>
+<% let status = ba.json(ba.d.status) %>
+<article class="calendar">
+    <div class="date">
+        <div class="chead">
+            <% for (let d of cald.header.day) { %>
+            <span><%- d %></span>
+            <% } %>
+        </div>
+        <div class="cbody">
+            <% for (let c of cald.data.date.col) { %>
+            <div>
+                <div class="ccol">
+                    <% for (let r of cald.data.date.row) { %>
+                    <% let day = month[r-1][c]; %>
+                    <% if (status[day] == false) { %>
+                    <label class="closed">
+                        <span><%- date.format(day) %></span>
+                    </label>
+                    <% } else if (curr < new Date(day)) { %>
+                    <input id="<%-`d${r}-${c}`%>" type="radio" name="e" data-day="<%- day %>">
+                    <label for="<%-`d${r}-${c}`%>">
+                        <span><%- date.format(day) %></span>
+                    </label>
+                    <% } else { %>
+                    <label class="before">
+                        <span><%- date.format(day) %></span>
+                    </label>
+                    <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="day d">
+    </div>
+</article>
+<style>
+    .date .ccol>*:not(input) {
+        height: calc(100% / <%- cald.data.date.row.length %>);
+    }
+</style>
+<link rel="stylesheet" href="/__source/__css/__calendar.css">
+<script type="module" src="/__source/__js/__calendar.js"></script>

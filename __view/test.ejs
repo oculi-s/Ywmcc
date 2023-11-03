@@ -1,0 +1,164 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/test.css">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/__menu.css">
+    <script type="module" src="/__source/__js/__menu.js"></script>
+    <script type="module" src="/__source/__js/test.js"></script>
+</head>
+
+<body>
+    <%-include(d.header)%>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%-include(d.aside)%>
+            <article class="m-22">
+                <div>
+                    <h2>자기 진단 검사</h2>
+                    <%- include(d.portal)%>
+                </div>
+                <% if (!auth) { %>
+                <p class="ref"><a onclick="logIn()" class="u">로그인</a>하시면 마이페이지에 결과를 기록하고 변화를 확인할 수 있습니다.</p>
+                <% } %>
+                <span class="sm1 p-h fa fa-angle-down">우울</span>
+                <ul class="sm2 m-h">
+                    <li class="active">우울</li>
+                    <li>불안</li>
+                    <li>스트레스</li>
+                </ul>
+                <div class="meta">
+                    <% for (let d in meta.radio) { %>
+                    <div class=<%- d %>>
+                        <% let c = meta.radio[d] %>
+                        <span><%- c.name %></span>
+                        <% for (let e in c.data) { %>
+                        <% if (c.span == 1){ %>
+                        <dl>
+                            <% for (let f in c.data[e]) { %>
+                            <dd>
+                                <input type="radio" name=<%-d%> value=<%-f%> id=<%-`${d}_${f}`%> <%- user[d]==f?'checked':'' %>>
+                                <label for=<%-`${d}_${f}`%>><%-c.data[e][f]%> </label>
+                            </dd>
+                            <% } %>
+                        </dl>
+                        <% } else { %>
+                        <div>
+                            <input type="radio" name=<%-d%> value=<%-e%> id=<%-`${d}_${e}`%> <%- user[d]==e?'checked':'' %>>
+                            <label for=<%-`${d}_${e}`%>><%-c.data[e]%> </label>
+                        </div>
+                        <% } %>
+                        <% } %>
+                    </div>
+                    <% } %>
+                    <div>
+                        <label><input type="checkbox" name="b4"> 수집된 데이터는 암호화되어 통계를 위해 사용될 수 있습니다.</label>
+                    </div>
+                </div>
+                <div class="sm3">
+                    <% for (let t in test.data) { %>
+                    <% let d = test.data[t]; %>
+                    <article <%-Object.keys(test.data).indexOf(t) == 0?'class=active':''%>>
+                        <form id="<%- t %>" action="/__/set/test" method="POST">
+                            <div>
+                                <h4><%- d.name %></h4>
+                                <p><%- d.description %></p>
+                            </div>
+                            <p class="des">( <%- d.header.map((e, i)=>`${e.replace(/<br>/g, ' ')} : ${i}점`).join(', ') %> )</p>
+                            <table class="data">
+                                <colgroup>
+                                    <% if (d.type == 'order') { %>
+                                    <col width="10%">
+                                    <col width="*">
+                                    <col width="11%">
+                                    <col width="11%">
+                                    <col width="11%">
+                                    <col width="11%">
+                                    <% } else if (d.type == 'select'){ %>
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="*">
+                                    <% } %>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <% for (let h of test[d.type].header) { %>
+                                        <th><%- h %></th>
+                                        <% } %>
+                                        <% for (let h of d.header) { %>
+                                        <th><%- h %></th>
+                                        <% } %>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (d.type == 'order'){ %>
+                                    <% let l = d.length; %>
+                                    <% for (let i in d.data) { %>
+                                    <% let e = d.data[i]; %>
+                                    <tr>
+                                        <td><%- i = parseInt(i)+1 %></td>
+                                        <td><%- e.name %></td>
+                                        <% for (let j in Array.from(Array(l).keys())) { %>
+                                        <% if (e.order){ %>
+                                        <td class="p"><input type="radio" name=<%-`${t}${i}`%> value=<%-(l-1)-j%>></td>
+                                        <% } else {  %>
+                                        <td class="p"><input type="radio" name=<%-`${t}${i}`%> value=<%-j%>></td>
+                                        <% }} %>
+                                    </tr>
+                                    <% } %>
+                                    <% } else if (d.type == 'select') { %>
+                                    <% for (let i in d.data) { %>
+                                    <% let e = d.data[i]; %>
+                                    <tr>
+                                        <td rowspan=<%- Object.keys(e).length %>><%- i = parseInt(i)+1 %></td>
+                                        <% for (let j in e) { %>
+                                        <td><%- j %></td>
+                                        <td class="p">
+                                            <input type="radio" name=<%-`${t}${i}`%> value=<%-j%>>
+                                            <span><%- e[j] %></span>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                    <% } %>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </form>
+                        <div class="res">
+                            <h4>채점결과</h4>
+                            <span class="btn"><span class="num"></span> 점</span>
+                            <button onclick="calc()" class="btn">점수확인</button>
+                            <a href="/apply" class="go btn">상담신청 <i class="fa fa-caret-right"></i></a>
+                            <table>
+                                <colgroup>
+                                    <col width="20%">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <% for (let e of d.result) { %>
+                                    <tr start=<%- e.start %> end=<%- e.end %>>
+                                        <th><%- `${e.start} ~ ${e.end}점` %></th>
+                                        <td><%- e.name %></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="ref"><%- d.reference %></p>
+                    </article>
+                    <% } %>
+                </div>
+            </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+</body>
+
+</html>

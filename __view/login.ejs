@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/login.css">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+</head>
+
+<% let re = req.query.re || '/'; %>
+
+<body>
+    <section class="login">
+        <img src="/__source/__img/logo_login.png">
+        <form method="POST" action=<%-`/__/au/in/?re=${re}`%>>
+            <div>
+                <p>
+                    <input type="text" name="id" placeholder="ID">
+                    <span>@yonsei.ac.kr</span>
+                </p>
+                <p> <input type="password" name="pw" placeholder="PW"> </p>
+                <button type="submit">LOGIN</button>
+            </div>
+            <p>* 회원가입 과정은 따로 거치지 않습니다.</p>
+            <p>* <span class=r>연세 메일주소</span>와 비밀번호로 로그인을 하면, <br class=p-h>메일로 보내진 인증을 통해서 가입이 됩니다.</p>
+            <p>* 가입시 작성한 비밀번호로 초기 비밀번호가 설정되므로, <br class=p-h>비밀번호 변경을 원하는 경우 재설정을 진행해주세요.</p>
+            <p><a class="u">비밀번호 재설정</a></p>
+        </form>
+    </section>
+    <%- include(ba.d.dialog.reset); %>
+</body>
+<script>
+    document.onkeydown = e => {
+        if (e.keyCode == 13) {
+            document.forms[0].submit();
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+table:not(.b-main *) {
+    width: 100%;
+}
+
+table:not(.b-main *) thead>tr:first-child>* {
+    font-weight: 500;
+    box-shadow: inset 0px -1px #333, inset 0 4px var(--table-top);
+}
+
+table:not(.b-main *) thead>tr:not(:first-child)>* {
+    font-weight: 500;
+    box-shadow: inset 0px -1px #333;
+}
+
+table:not(.b-main *) tbody>tr>* {
+    font-weight: normal;
+    border-bottom: 1px solid #e7e7e7;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 0px;
+}
+
+@media screen and (max-width:768px) {
+    table:not(.b-main *) tr>* {
+        padding: 8px 0;
+        font-size: 13px;
+    }
+    table:not(.b-main *) tbody>tr>* {
+        min-width: 80px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    table:not(.b-main *) tr>* {
+        padding: 10px 0;
+    }
+    table:not(.b-main *) thead>tr>* {
+        padding: 15px 0;
+    }
+}

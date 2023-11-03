@@ -1,0 +1,47 @@
+<table>
+    <colgroup>
+        <col width="10%" class="m-h">
+        <col width="12%" class="m-h">
+        <col width="25%">
+        <col width="30px" class="m-h">
+        <col width="30px" class="m-h">
+        <col width="30px" class="m-h">
+        <col width="10%">
+        <col width="10%">
+    </colgroup>
+    <thead>
+        <tr>
+            <th class="m-h">날짜</th>
+            <th class="m-h">시간</th>
+            <th>이름</th>
+            <th class="m-h">성별</th>
+            <th class="m-h">학과</th>
+            <th class="m-h">학년</th>
+            <th>유형</th>
+            <th>결과</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% let none = '<i class="none">미입력</i>' %>
+        <% let tname = {'depress':'우울', 'anxiety':'불안', 'stress':'스트레스'} %>
+        <% for (let k in test) { %>
+        <% for (let e of Object.keys(test[k]).sort((a,b)=>new Date(b)-new Date(a))) { %>
+        <% let [day, time] = e.split(' ') %>
+        <tr uid="<%- k %>" data-day="<%- day %>" data-time="<%- time %>">
+            <td class="m-h"><%- date.format(day) %></td>
+            <td class="m-h"><%- time %></td>
+            <% if (user[k].ip) { %>
+            <td><i class="none"><%- user[k].ip %></td>
+            <% } else { %>
+            <td><a class="u" href="<%- `/admin/user?uid=${k}` %>"><%- user[k].c1 || none %></a></td>
+            <% } %>
+            <td class="m-h"><%- meta.radio.b1.data[user[k].b1] %></td>
+            <td class="m-h"><%- meta.radio.b2.data[user[k].b2].slice(0,2) %></td>
+            <td class="m-h"><%- meta.radio.b3.data[user[k].b2][user[k].b3] %></td>
+            <td><%- tname[test[k][e].type] %></td>
+            <td><%- test[k][e].score %></td>
+        </tr>
+        <% } %>
+        <% } %>
+    </tbody>
+</table>

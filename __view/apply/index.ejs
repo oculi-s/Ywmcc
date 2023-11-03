@@ -1,0 +1,66 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/__aside.css">
+    <link rel="stylesheet" href="/__source/__css/__header.css">
+    <link rel="stylesheet" href="/__source/__css/__footer.css">
+    <link rel="stylesheet" href="/__source/__css/__table.css">
+    <link rel="stylesheet" href="/__source/__css/apply.css">
+    <script type="module" src="/__source/__js/__header.js"></script>
+    <script type="module" src="/__source/__js/__aside.js"></script>
+    <% if (user) { %>
+    <script type="module" src="/__source/__js/apply.js"></script>
+    <% } %>
+</head>
+
+<body>
+    <%- include(d.header) %>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%- include(d.aside) %>
+            <article class="m-22">
+                <div>
+                    <h2>상담신청</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <% if (user) { %>
+                <article class="a2">
+                    <h4>상담하고 싶은 내용</h4>
+                    <p>* 구체적으로 적을수록 좋습니다.</p>
+                    <table>
+                        <colgroup>
+                            <col width="30%">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <textarea name="d1"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn">다음</button>
+                </article>
+                <article class="a3 d">
+                    <h4>상담 일정</h4>
+                    <p>* 향후 5주 이내에 상담신청이 가능합니다.</p>
+                    <%- include(d.calendar) %>
+                    <button class="btn">신청하기</button>
+                </article>
+                <% } %>
+            </article>
+        </div>
+    </section>
+    <%- include(d.footer) %>
+</body>
+
+</html>

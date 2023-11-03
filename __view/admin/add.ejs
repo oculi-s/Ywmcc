@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>신청 추가</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico" />
+    <link rel="stylesheet" href="/__source/__css/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/add.css" />
+</head>
+
+<% let id = req.query.uid || '' %>
+<% let metas = ba.json(ba.d.admin.meta); %>
+<% metas = Object.entries(metas) %>
+
+<body>
+    <div class="a-0">
+        <a href="/admin/"><i class="fa fa-arrow-left"></i> 뒤로가기</a>
+        <span>상담신청 추가</span>
+    </div>
+    <div class="a-1">
+        <h3>유저</h3>
+        <% for (let [uid, m] of metas.sort(([k1, a],[k2, b]) => a.c1 < b.c1 ? -1 : a.c1 > b.c1 ? 1 : 0)) { %>
+        <input id="<%- uid %>" type="radio" name="c1" value="<%- uid %>" <%- uid == id ? 'checked':'' %>>
+        <label for="<%- uid %>"><%- m.c1 %></label>
+        <% } %>
+    </div>
+    <div class="a-2">
+        <%- include(ba.d.calendar) %>
+        <h3>상담 내용</h3>
+        <textarea name="d1"></textarea>
+        <button>추가하기</button>
+    </div>
+</body>
+
+<script type="module">
+    import {
+        $,
+        $$
+    } from "/__source/__js/_.js";
+    import * as $x from "/__source/__js/xhr.js";
+
+    $('.a-2 button').onclick = async () => {
+        let t = $('[name=t]:checked');
+        let uid = $('[name=c1]:checked').value;
+        let d1 = $('[name=d1]');
+        if (!uid) return alert('유저를 선택해주세요.');
+        if (!t) return alert('시간을 선택해주세요.');
+        let d = $('[name=e]:checked')
+        let day = d.dataset.day;
+        let time = t.dataset.time;
+        let name = $('[name=c1]:checked+label').innerText;
+        let info = {
+            type: "add",
+            after: `${day} ${time}`,
+            about: d1.value
+        };
+        day = `${day.split('-')[1]}월 ${day.split('-')[2]}일`
+        if (confirm(`${name} ${day} ${time}에 상담을 신청하시겠습니까?`)) {
+            let res = await $x.cal.set(info);
+            if (res.status == 200) {
+                res = await $x.set.apply(uid, info);
+                if (res.status == 200) {
+                    alert('상담 추가가 완료되었습니다.\n관리자 페이지로 이동합니다.');
+                    location.href = '/admin/';
+                } else if (res.status >= 400) {
+                    alert('다시 시도중입니다.\n페이지를 새로고침하지 말고 잠시 기다려주세요.');
+                }
+            } else {
+                alert('다른 학생이 신청한 시간입니다.\n다른 시간을 선택해주세요.');
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,155 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.6/beautify-html.min.js"></script>
+<link rel="stylesheet" href="/__source/__css/prps.css">
+<style>
+.b-main [type="text/plain"] {display:block; white-space:normal;}
+.prev * {margin-left:unset !important;}
+.des {font-size:.9em; color:grey; text-align:center;}
+.b-main a {text-decoration:initial}
+.prettyprint {font-weight:normal;}
+.b-main table {table-layout:fixed}
+</style>
+<h3>6. 파일을 추가, 삭제하거나 원하는 곳에 삽입하는 방법</h3>
+<hr>
+<h4>1) 파일을 창 아무 곳에나 드래그한다.</h4>
+<%- img('1.png') %>
+<h4>2) 파일이 자동으로 업로드 된다.</h4>
+<%- img('2.png') %>
+<h4>3) 세 개의 버튼이 생긴다.</h4>
+<%- img('3.png') %>
+<h4>4) 각 버튼을 누르면 다음의 (2) HTML코드가 클립보드에 저장 (복사)된다.</h4>
+<p>(사실 (3) 변환된 내용을 바로 작성해도 상관 없음)</p>
+<table>
+<colgroup>
+<col width=90px>
+<col width=250px>
+</colgroup>
+<tbody>
+<tr>
+<th>(1) 버튼</th>
+<th>(2) 복사되는 내용</th>
+<th>(3) 붙여넣으면 변환되는 내용</th>
+</tr>
+<tr>
+<th rowspan=2>Img</th>
+<td rowspan=2>
+<p>
+<%%- img('1.png') %%>
+</p>
+<p>이미지 태그로 변환</p>
+</td>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<img src=/__source/board/(지금 공지의 uid)/__file/(파일이름)>
+</script>
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<img src=/__source/board/745b0227-d687-4906-b34d-340492d9626c/__file/1.png>
+</script>
+</code>
+</td>
+</tr>
+<tr>
+<th rowspan=2>Down<br>load</th>
+<td rowspan=2>
+<p>
+<%%- download('1.pdf') %%>
+</p>
+<p>누르면 다운로드 할 수 있는 링크로 변환</p>
+</td>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<a href=/__source/board/(지금 공지의 uid)/__file/(파일이름) download></a>
+</script>
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<a href=/__source/board/745b0227-d687-4906-b34d-340492d9626c/__file/1.png download></a>
+</script>
+</code>
+</td>
+</tr>
+<tr>
+<th rowspan=2>Pdf</th>
+<td rowspan=2>
+<p>
+<%%- pdf('1.pdf') %%>
+</p>
+<p>바로 볼 수 있는 pdf 문서로 전환</p>
+</td>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<iframe src=/__source/board/(지금 공지의 uid)/__file/(파일이름)></iframe>
+</script>
+</code>
+<p class=red>iframe 태그 = 외부 문서나 유튜브 영상을 바로 웹에 첨부할 수 있는 태그</p>
+</td>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<iframe src=/__source/board/745b0227-d687-4906-b34d-340492d9626c/__file/1.pdf></iframe>
+</script>
+</code>
+</td>
+</tr>
+<tr>
+<th rowspan=2>Emoji<br>(버튼없음)</th>
+<td rowspan=2>
+<p><%%- emoji('1.png') %%></p>
+<p>기본적인 image의 크기를 줄인 형태</p>
+</td>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<img src=/__source/board/(지금 공지의 uid)/__file/(파일이름) class=emoji>
+</script>
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<img src=/__source/board/745b0227-d687-4906-b34d-340492d9626c/__file/1.png class=emoji>
+</script>
+</code>
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr>
+<th>
+Iframe 태그의 예시
+<code class=prettyprint>
+<script type=text/plain>
+<iframe src="https://youtube.com/embed/gQlMMD8auMs"></iframe>
+</script>
+</code>
+</th>
+</tr>
+<tr>
+<td>
+<iframe src="https://youtube.com/embed/gQlMMD8auMs" height=300px style="width:400px;"></iframe>
+<p class=des>src에 원하는 주소를 붙여넣으면 외부 영상이나 자료를 불러올 수 있습니다.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h4>5) 복사된 텍스트를 원하는 위치에 붙여넣고 저장하면 데이터를 확인할 수 있다.</h4>
+<%- img('4.png') %>

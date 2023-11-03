@@ -1,0 +1,174 @@
+body {
+    vertical-align: top;
+    text-align: center;
+}
+
+body>div {
+    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid var(--main-border);
+    border-radius: 10px;
+}
+
+label>input {
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+textarea {
+    padding: 3px !important;
+}
+
+.sm3 {
+    margin-top: 20px;
+}
+
+.none {
+    color: var(--footer-text);
+}
+
+.sm2 {
+    padding: 0;
+}
+
+.fa {
+    cursor: pointer;
+}
+
+.a-0 {
+    margin: auto;
+    margin-bottom: 20px;
+    max-width: 1000px;
+    display: block;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.n {
+    min-width: 20px;
+    display: inline-block;
+    font-weight: bold;
+    color: var(--red);
+    text-align: right;
+    margin-right: 3px;
+}
+
+.a-0 a {
+    position: absolute;
+    left: 10px;
+}
+
+.a-1 {
+    max-width: 400px;
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.a-1>a {
+    float: left;
+    margin-bottom: 10px;
+}
+
+.a .ccol div,
+.e .ccol div {
+    cursor: pointer;
+}
+
+.a-21,
+.a-22 {
+    min-height: 300px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.user tbody tr:hover {
+    background: var(--red);
+    cursor: pointer;
+}
+
+h3 {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+h3::before {
+    content: "";
+    background: url(/__source/__img/h4_before.png) no-repeat;
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+button {
+    margin-top: 10px;
+    border-radius: 0;
+    min-width: 80px;
+    max-width: 80px;
+    background: var(--blue);
+    color: #fff !important;
+    float: right;
+    margin-right: 0;
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+thead>tr:first-child>* {
+    font-weight: 500;
+    box-shadow: inset 0px -1px #333, inset 0 4px var(--table-top);
+}
+
+thead>tr:not(:first-child)>* {
+    font-weight: 500;
+    box-shadow: inset 0px -1px #333;
+}
+
+tbody>tr>* {
+    font-weight: normal;
+    border-bottom: 1px solid #e7e7e7;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media screen and (min-width:768px) {
+    tr>* {
+        padding: 5px 0;
+    }
+    thead>tr>* {
+        padding: 15px 0;
+    }
+    .a-1 {
+        width: 35%;
+        margin-right: 30px;
+    }
+    .a-2 {
+        width: 60%;
+    }
+    body {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    table * {
+        font-size: 16px;
+        padding: 3px 0;
+    }
+    body>div {
+        width: 100% !important;
+    }
+    .sm2 {
+        width: calc(100% - 62px);
+    }
+    body {
+        padding: 10px;
+    }
+}

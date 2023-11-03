@@ -1,0 +1,129 @@
+<%- include(ba.d.admin.dialog) %>
+<%- include(ba.d.admin.js.alist) %>
+<% let now = ba.now() %>
+<script type="module">
+    import {
+        $,
+        $$
+    } from "/__source/__js/_.js";
+    $$(".apply tbody, .test tbody").forEach(e => {
+        e.replaceChildren(...Array.from(e.children).sort(
+            (b, a) => new Date(`${a.dataset.day} ${a.dataset.time}`) - new Date(`${b.dataset.day} ${b.dataset.time}`)))
+    })
+</script>
+<table class="apply">
+    <colgroup>
+        <col width="60px" <%- comment?`class="m-h"`:"" %>>
+        <col width="60px" <%- comment?`class="m-h"`:"" %>>
+        <% if (!req.query.uid) { %>
+        <col width="80px">
+        <col width="50px" class="m-h">
+        <col width="50px" class="m-h">
+        <% } %>
+        <col width="*" <%- req.query.uid?"":`class="m-h"` %>>
+        <% if (comment) { %>
+        <col width="*">
+        <col width="*">
+        <% } %>
+        <col width="60px">
+    </colgroup>
+    <thead>
+        <th <%- comment?`class="m-h"`:"" %>>날짜</th>
+        <th <%- comment?`class="m-h"`:"" %>>시간</th>
+        <% if (!req.query.uid) { %>
+        <th>이름</th>
+        <th class="m-h">성별</th>
+        <th class="m-h">학년</th>
+        <% } %>
+        <th <%- req.query.uid?"":`class="m-h"` %>>내용</th>
+        <% if (comment) { %>
+        <th>상담내용 정리 <br>(학생비공개)</th>
+        <th>후기 남기기 <br>(학생공개)</th>
+        <% } %>
+        <th>수정</th>
+    </thead>
+    <% if (req.query.uid) { %>
+    <tbody>
+        <% for (let e of Object.keys(apply).filter(e=>e!='hidden').sort((a,b)=>new Date(b)-new Date(a))) { %>
+        <% let [day, time] = e.split(' '); %>
+        <% let after = date.now(e) >= now; %>
+        <tr class="<%- after?'green d':'blue' %>" data-day="<%- day %>" data-time="<%- time %>">
+            <td class="m-h"><%- date.format(day) %></td>
+            <td class="m-h"><%- time %></td>
+            <td><%- apply[e].about %></td>
+            <td><textarea><%- apply[e].summary %></textarea></td>
+            <td><textarea><%- apply[e].comment %></textarea></td>
+            <td>
+                <% if (after) { %>
+                <label class=edit>수정</label>
+                <i class="fa fa-times del"></i>
+                <% }  %>
+            </td>
+        </tr>
+        <% } %>
+        <% for (let h of apply.hidden || []) { %>
+        <% let [day, time] = h.before.split(' '); %>
+        <tr class="grey" data-day="<%- day %>" data-time="<%- time %>">
+            <td class="m-h"><%- date.format(day) %></td>
+            <td class="m-h"><%- time %></td>
+            <td><%- h.about %></td>
+            <td><%- h.summary %></td>
+            <td><%- h.comment %></td>
+            <td></td>
+        </tr>
+        <% } %>
+    </tbody>
+    <% } else { %>
+    <tbody>
+        <% for (let k in apply) { %>
+        <% let udata = apply[k]; %>
+        <% for (let e of Object.keys(udata).sort((a,b)=>new Date(b)-new Date(a))) { %>
+        <% if (e != 'hidden') { %>
+        <% let after = date.now(e) >= now; %>
+        <% let [day, time] = e.split(' '); %>
+        <% let clist = []; %>
+        <% if (color) clist.push(new Date(e) >= now?'green':'blue'); %>
+        <% if (!before) clist.push(new Date(e) >= now?'':'d') %>
+        <tr data-day="<%- day %>" data-time="<%- time %>" class="<%- clist.join(' ') %>" uid="<%- k %>">
+            <td <%- comment?`class="m-h"`:"" %>><%- date.format(day) %></td>
+            <td <%- comment?`class="m-h"`:"" %>><%- time %></td>
+            <td><a class="u" href="<%- `/admin/user?uid=${k}` %>"><%- user[k].c1 %></a></td>
+            <td class="m-h"><%- meta.radio.b1.data[user[k].b1] %></td>
+            <td class="m-h"><%- meta.radio.b3.data[user[k].b2][user[k].b3] %></td>
+            <td class="m-h"><%- udata[e].about %></td>
+            <% if (comment) { %>
+            <td><textarea><%- udata[e].summary %></textarea></td>
+            <td><textarea><%- udata[e].comment %></textarea></td>
+            <% } %>
+            <td>
+                <% if (after) { %>
+                <label class=edit>수정</label>
+                <i class="fa fa-times del"></i>
+                <% }  %>
+            </td>
+        </tr>
+        <% } %>
+        <% } %>
+        <% for (let h of apply[k].hidden || []) { %>
+        <% let [day, time] = h.before.split(' '); %>
+        <% let clist = ['delete']; %>
+        <% if (color) clist.push('grey'); %>
+        <% if (!before) clist.push(new Date(h) >= now?'':'d') %>
+        <tr data-day="<%- day %>" data-time="<%- time %>" class="<%- clist.join(' ') %>">
+            <td <%- comment?`class="m-h"`:"" %>><%- date.format(day) %></td>
+            <td <%- comment?`class="m-h"`:"" %>><%- time %></td>
+            <td><a class="u" href="<%- `/admin/user?uid=${k}` %>"><%- user[k].c1 %></a></td>
+            <td class="m-h"><%- meta.radio.b1.data[user[k].b1] %></td>
+            <td class="m-h"><%- meta.radio.b3.data[user[k].b2][user[k].b3] %></td>
+            <td class="m-h"><%- h.about %></td>
+            <% if (comment) { %>
+            <td><%- h.summary %></td>
+            <td><%- h.comment %></td>
+            <% } %>
+            <td></td>
+        </tr>
+        <% } %>
+        <% } %>
+        <% } %>
+    </tbody>
+</table>

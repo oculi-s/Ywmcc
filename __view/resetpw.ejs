@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>비밀번호 재설정</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/login.css">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+</head>
+
+<body>
+    <section class="login">
+        <form method="POST" action=<%-`/__/au/reset/?re=%2F&uid=${uid}`%>>
+            <h2>비밀번호 재설정</h2>
+            <div>
+                <p> <input type="password" name="pw" placeholder="비밀번호"> </p>
+                <p> <input type="password" name="pwc" placeholder="비밀번호 확인"> </p>
+                <button type="submit">재설정</button>
+            </div>
+        </form>
+    </section>
+    <style>
+        .login {
+            text-align: center;
+        }
+
+        form {
+            width: 80%;
+        }
+    </style>
+</body>
+
+</html>

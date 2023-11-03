@@ -1,0 +1,69 @@
+.m-22>span {
+    display: block;
+    margin-bottom: 50px;
+}
+
+.m-22 h3~span {
+    display: inline-block;
+}
+
+.m-22>span>div {
+    background: url(/__source/__img/intro/thumbnail.jpg) no-repeat;
+    background-size: 100% auto;
+    border: 1px solid #d8d8d8;
+    display: inline-block;
+    height: 0;
+}
+
+.m-22 dl {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+
+.m-22 dl>dt {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.m-22 dl>dd {
+    margin: 5px 0;
+}
+
+.m-22 h3 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    width: 100%;
+}
+
+.m-22>span>div {
+    width: 40%;
+    padding-top: 47.8%;
+}
+
+.m-22 h3~span>div {
+    width: 30%;
+    padding-top: 35.8%;
+}
+
+@media screen and (min-width:768px) {
+    .m-22 h3~span {
+        width: 48%;
+    }
+    .m-22>span {
+        width: 55%;
+    }
+    .m-22 dl {
+        padding-left: 20px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .m-22>span {
+        width: 100%;
+    }
+    .m-22 dl {
+        padding-left: 3%;
+    }
+}

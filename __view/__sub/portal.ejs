@@ -1,0 +1,12 @@
+<div class="portal m-h">
+    <a href=/ class="fa fa-home"></a>
+    <% let url = req.path.split('/').filter(e=>e) %>
+    <% for (let i in url){ %>
+    <% let href = '/'+url.slice(0, i + 1).join('/')+'/'; %>
+    <% let now = menu[url[0]].child.find(e=>e.href.replace(/\//g, '') == href.replace(/\//g, '')) %>
+    <% if (now) { %>
+    <i class="fa fa-angle-right"></i>
+    <a href=<%-href%>><%-now.name%></a>
+    <% } %>
+    <% } %>
+</div>

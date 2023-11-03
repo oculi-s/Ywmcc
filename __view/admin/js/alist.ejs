@@ -1,0 +1,111 @@
+<script type="module">
+    import {
+        $,
+        $$
+    } from "/__source/__js/_.js";
+    import * as $x from "/__source/__js/xhr.js";
+
+    let edit = $('dialog.edit');
+    let time = $('dialog.edit .time');
+    let save = $('dialog.edit .save');
+    let delb = $('dialog.edit .del');
+
+    function zoomIn(tr) {
+        document.body.classList.add('e');
+        tr.classList.add('f');
+    }
+
+    function zoomOut(tr) {
+        document.body.classList.remove('e');
+        $$('.f').forEach(e => e.classList.remove('f'));
+    }
+
+    $$('.apply tbody textarea').forEach(e => {
+        e.onfocus = () => {
+            zoomIn(e.closest('tr'))
+        };
+        e.onblur = () => {
+            zoomOut(e.closest('tr'))
+        }
+    })
+
+    $$('.apply tbody tr').forEach(tr => {
+        if (tr.$('.edit')) {
+            tr.$('.edit').onclick = () => {
+                document.body.classList.add('blur', 'b-hide');
+                edit.open = true;
+                edit.setAttribute('uid', tr.getAttribute('uid'));
+                $$('tr.red').forEach(e => {
+                    e.classList.remove('red')
+                });
+                tr.classList.add('red');
+                time.innerText = `${tr.dataset.day} ${tr.dataset.time}`
+            };
+        }
+    })
+
+    save.onclick = async () => {
+        if (confirm("상담을 수정하시겠습니까?")) {
+            let uid = edit.getAttribute('uid');
+            let b = $('tr.red');
+            let e = $('[name="e"]:checked') || b;
+            let t = $('[name="t"]:checked') || b;
+            let before = `${b.dataset.day} ${b.dataset.time}`;
+            let after = `${e.dataset.day} ${t.dataset.time}`;
+            let info = {
+                type: "edit",
+                before: before,
+                after: after,
+                about: b.children[5].innerText,
+            };
+            let res = await $x.cal.set(info);
+            if (res.status == 200) {
+                res = await $x.set.applyedit(uid, info);
+                if (res.status == 200) {
+                    alert('성공적으로 수정되었습니다.')
+                    location.reload();
+                } else {
+                    alert(res.responseText);
+                }
+            } else {
+                alert(res.responseText);
+            }
+        }
+    }
+
+    $$('tr .del').forEach(e => {
+        e.onclick = async () => {
+            let tr = e.closest('tr');
+            del(tr);
+        }
+    })
+
+    delb.onclick = () => {
+        let uid = edit.getAttribute('uid');
+        let tr = $(`tr[uid=${uid}]`);
+        del(tr);
+    }
+
+    async function del(tr) {
+        if (confirm('삭제하시겠습니까?')) {
+            let uid = tr.getAttribute('uid');
+            let before = `${tr.dataset.day} ${tr.dataset.time}`;
+            let info = {
+                type: "admin",
+                before,
+            };
+            let res = await $x.cal.set(info);
+            if (res.status == 200) {
+                res = await $x.set.applydel(uid, info);
+                if (res.status == 200) {
+                    alert('성공적으로 삭제되었습니다.');
+                    location.reload();
+                } else {
+                    alert(res.responseText);
+                }
+            } else {
+                alert(res.responseText);
+            }
+        }
+    }
+</script>

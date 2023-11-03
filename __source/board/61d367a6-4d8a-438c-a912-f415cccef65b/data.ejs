@@ -1,0 +1,49 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.6/beautify-html.min.js"></script>
+<link rel="stylesheet" href="/__source/__css/prps.css">
+<style>
+.b-main img {width:400px}
+.b-main [type="text/plain"] {display:block;}
+.prev * {margin-left:unset !important;}
+.des {font-size:.9em; color:grey; text-align:center;}
+.b-main a {text-decoration:initial}
+.prettyprint {font-weight:normal;}
+.b-main table {table-layout:fixed}
+</style>
+<h3>7. F12로 페이지 소스 확인하기</h3>
+<hr>
+<h4>1) F12를 누르면 다음과 같이 오른쪽 제어 창이 뜬다.</h4>
+<%- img('1.png') %>
+<p class=des>Ctrl + Shift + C를 통해 할 수도 있습니다.</p>
+<p>제어창은 현재 HTML 페이지가 어떤 요소들로 이루어져 있고 (<b>html</b>), 스타일 구성이 어떻게 되고 (<b>css</b>), 어떤 기능을 하는지 (<b>javascript</b>) 보여주는 공간입니다.</p>
+<h4>2) Element 창을 보면 창의 구성과 스타일을 볼 수 있다.</h4>
+<%- img('3.png') %>
+<p>마우스 모양 아이콘을 클릭하고, 페이지에서 원하는 요소 위에 마우스를 가져다 대면 아래와 같이 요소의 위치, 태그, class, id 등을 볼 수 있습니다.</p>
+<p>위에서 설명한 대로 오른쪽 화면에서 마우스 모양 아이콘을 클릭한 뒤 div.nav를 클릭합니다.</p>
+<%- img('2.png') %>
+<table>
+<tr>
+<th>Element의 개요</th>
+<th>창의 구성</th>
+<th>Element에 적용된 CSS</th>
+</tr>
+<tr>
+<td>
+<%- img('4.png') %>
+<p class=des>요소의 대략적인 정보를 종합한 부분, 크기, 글자색 등을 볼 수 있습니다.</p>
+</td>
+<td>
+<%- img('5.png') %>
+<p class=des>창의 전체적인 HTML구성을 보여주는 부분, 선택한 요소의 부모-자식 관계도 볼 수 있습니다.</p>
+</td>
+<td>
+<%- img('6.png') %>
+<p class=des>요소와 그 부모요소들에 적용된 CSS를 보여주는 부분, nav 클래스에는 양쪽 <span class=red>내부 여백을 10픽셀씩</span> 주었습니다.</p>
+</td>
+</tr>
+</table>
+<h4>3) F12로 모바일 페이지 확인하기</h4>
+<%- img('7.png') %>
+<%- img('8.png') %>
+<h4>4) 변화된 내용 실시간으로 반영하기</h4>
+<h4>5) Javascript console 사용하기</h4>

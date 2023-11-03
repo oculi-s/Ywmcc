@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <title>학생 정보</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico" />
+    <link rel="stylesheet" href="/__source/__css/main.css" />
+    <link rel="stylesheet" href="/__source/__css/__menu.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/admin.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/user.css" />
+    <script type="module" src="/__source/__js/__menu.js"></script>
+    <script type="module" src="/__source/__js/admin/user.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+
+<body>
+    <% let none = '<i class="none">미입력</i>' %>
+    <div class="a-0">
+        <a href="/admin/"><i class="fa fa-arrow-left"></i> 뒤로가기</a>
+        <span>상담<span class="m-h">횟수</span> : <span class="n"><%- Object.keys(apply).filter(e=>e!='hidden').length %></span>회 / 검사<span class="m-h">횟수</span> : <span class="n"><%- Object.keys(test).length %></span>회</span>
+    </div>
+    <div class="a-1">
+        <table class="meta">
+            <colgroup>
+                <col width="30%" />
+                <col width="*" />
+            </colgroup>
+            <tr>
+                <th>이름</th>
+                <td><%- user.c1 || none %></td>
+            </tr>
+            <tr>
+                <th>성별</th>
+                <td><%- meta.radio.b1.data[user.b1] %></td>
+            </tr>
+            <tr>
+                <th>학과/학년</th>
+                <td><%- meta.radio.b2.data[user.b2] %> / <%- meta.radio.b3.data[user.b2][user.b3] %></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><%- user.c2 || none %></td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td><a class="u" href="mailto:<%- users[uid].id %>@yonsei.ac.kr"><%- users[uid].id %>@yonsei.ac.kr</a></td>
+            </tr>
+        </table>
+        <button onclick="location.href='<%-`/admin/add?uid=${uid}`%>'">상담추가</button>
+    </div>
+    <div class=" a-2">
+        <div class="a-20">
+            <button class="save">저장</button>
+            <button class="down">다운로드</button>
+        </div>
+        <div class="a-21">
+            <h3>상담내역</h3>
+            <div>
+                <span class="grey color"></span>
+                <span>신청 취소</span>
+                <span class="blue color"></span>
+                <span>상담 완료</span>
+                <span class="green color"></span>
+                <span>상담 대기</span>
+                <br class="p-h">
+                <label>
+                    <input type="checkbox" />
+                    진행중인 상담 보기
+                </label>
+            </div>
+            <%- include(ba.d.admin.alist, {comment:true, color:true}) %>
+        </div>
+        <div class="a-22">
+            <h3>검사내역</h3>
+            <% let depress = Object.entries(test).filter(([k, v])=>v.type=='depress'); %>
+            <% let anxiety = Object.entries(test).filter(([k, v])=>v.type=='anxiety'); %>
+            <% let stress = Object.entries(test).filter(([k, v])=>v.type=='stress'); %>
+            <span class="sm1 p-h fa fa-angle-down">우울</span>
+            <ul class="sm2 m-h">
+                <li class="active">우울</li>
+                <li>불안</li>
+                <li>스트레스</li>
+            </ul>
+            <div class="sm3">
+                <article class="active"> <%- include(ba.d.result, {data:depress}) %> </article>
+                <article> <%- include(ba.d.result, {data:anxiety}) %> </article>
+                <article> <%- include(ba.d.result, {data:stress}) %> </article>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<% let max = {}; %>
+<% for (let [k, v] of data) { %>
+<% k = k.split(' ')[0]; %>
+<% if (!max[k] || max[k] < v.score) { %>
+<% max[k] = v.score; %>
+<% } %>
+<% } %>
+<% max = Object.entries(max).sort((a,b)=>new Date(a[0])-new Date(b[0])); %>
+<% if (max.length) { %>
+<% max = max[0].map((_,i)=>max.map(e=>e[i])); %>
+<% } %>
+<div class="t">
+    <table>
+        <colgroup>
+            <col width="30%">
+            <col width="30%">
+            <col width="*">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>날짜</th>
+                <th>시간</th>
+                <th>결과</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let [e, v] of data.sort((a,b)=>new Date(b[0])-new Date(a[0]))) { %>
+            <% let [day, time] = e.split(' ') %>
+            <tr>
+                <th><%- date.format(day) %></th>
+                <td><%- time %></td>
+                <td><%- v.score %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<div class="c">
+    <%- JSON.stringify(max) %>
+</div>
+<link rel="stylesheet" href="/__source/__css/__chart.css" />
+<script type="module" src="/__source/__js/__chart.js"></script>

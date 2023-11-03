@@ -1,0 +1,69 @@
+body {
+    overflow-x: hidden;
+}
+
+textarea {
+    width: calc(100% - 20px);
+    height: 30px;
+    margin: 0 10px;
+    padding: 10px;
+    display: block;
+    resize: none;
+    transition: all .5s;
+    border: 1px solid var(--main-border);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.f,
+.f textarea {
+    height: 300px;
+    transition: all .5s !important;
+}
+
+.f * {
+    white-space: unset;
+}
+
+tr {
+    height: 30px;
+    transition: all .5s !important;
+}
+
+button {
+    float: none;
+}
+
+article>span {
+    position: relative;
+    display: block;
+}
+
+h3+label {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+dialog {
+    background-image: url(/__source/__img/dialog_bg.png);
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+.git {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border: 0;
+    text-align: left;
+}
+
+.git a:hover {
+    color: var(--red);
+}
+
+.des {
+    font-size: .8em;
+    text-align: right;
+}

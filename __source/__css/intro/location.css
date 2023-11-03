@@ -1,0 +1,12 @@
+.m-22 *{
+    list-style-type: disc !important;
+}
+
+.m-22 ul, ol{
+    margin-left: 30px;
+}
+
+.m-22 li>span{
+    display: inline-block;
+    vertical-align: top;
+}

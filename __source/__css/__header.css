@@ -1,0 +1,285 @@
+header {
+    border-top: 5px solid var(--deep-blue);
+    background: #fff;
+    height: 95px;
+}
+
+header h1 img {
+    max-height: 50px;
+    z-index: 100;
+}
+
+header>span p {
+    display: table;
+    background: url(/__source/__img/menu/menu_bg.png) no-repeat 0 0;
+    background-size: cover;
+    margin: 45px 0 0 0;
+    padding: 20px;
+    width: 390px;
+    height: 170px;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--footer-bg);
+}
+
+header>div {
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+header .hide {
+    max-height: 0;
+    transition: max-height ease-in-out .5s, z-index step-end .5s;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+header .hide:not(.view) {
+    z-index: -1;
+}
+
+header .view {
+    transition: max-height ease-in-out .5s;
+    max-height: 300px;
+}
+
+nav>div {
+    position: relative;
+}
+
+nav>div>p {
+    cursor: pointer;
+}
+
+nav>div>div>a {
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+nav>div>p>a {
+    width: 100%;
+    height: 100%;
+    color: unset;
+}
+
+header .timer {
+    position: absolute;
+    font-weight: 500;
+    border: 1px solid var(--main-border);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color .3s;
+    text-align: center;
+}
+
+header .timer:hover {
+    background-color: var(--blue);
+}
+
+@media screen and (min-width:1024px) {
+    header .menu {
+        display: none;
+    }
+    header h1 {
+        z-index: 10;
+        padding: 20px 10px 0 10px;
+        float: left;
+    }
+    nav {
+        margin-left: auto;
+        position: relative;
+        text-align: right;
+        width: fit-content;
+    }
+    nav>div {
+        display: inline-block;
+        text-align: center;
+        font-weight: 500;
+        font-size: 17px;
+    }
+    nav>div:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 39px;
+        right: 0;
+        width: 1px;
+        height: 18px;
+        background-color: var(--main-border);
+    }
+    nav div:last-of-type:after {
+        display: none;
+    }
+    nav>div>p {
+        padding: 34px 25px 31px;
+    }
+    nav>div>div>a {
+        padding-top: 26px;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    nav>div>div>a:hover {
+        color: var(--dark-blue);
+    }
+    nav>div:hover {
+        color: var(--dark-blue);
+        font-weight: 500;
+    }
+    nav>div:hover:before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--dark-blue);
+    }
+    nav>div:first-of-type div {
+        border-left: 1px solid #ececec;
+    }
+    nav>div>div {
+        position: absolute;
+        top: 91px;
+        left: 0;
+        z-index: 20;
+        width: 100%;
+        height: 264px;
+        border-right: 1px solid #ececec;
+    }
+    header>span {
+        position: absolute;
+        top: 95px;
+        z-index: 10;
+        width: 100%;
+        height: 264px;
+        border-top: 1px solid #ececec;
+        border-bottom: 1px solid #ececec;
+        background-color: #fff;
+    }
+    header>span>div {
+        margin: 0 auto;
+        max-width: 1240px;
+    }
+    header>span p span {
+        display: table-cell;
+        vertical-align: bottom;
+    }
+    header .timer {
+        padding: 5px 20px;
+        left: 35%;
+        top: 40px;
+        height: 36px;
+        width: 120px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    header .select p {
+        background: url(/__source/__img/menu/menu_hide.png) no-repeat right 20px center;
+        background-size: 17px;
+    }
+    header .select {
+        background-color: var(--blue);
+        color: #fff;
+    }
+    header.show nav {
+        right: 0;
+        transition: right ease-out .3s;
+    }
+    header {
+        height: 67px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--main-border);
+        z-index: 35;
+    }
+    header h1 {
+        display: inline;
+        width: fit-content;
+        position: relative;
+        padding: 7px 0 0 10px;
+        float: left;
+    }
+    header h1 img {
+        width: 240px;
+    }
+    header .close {
+        position: fixed;
+        top: 15px;
+        left: auto;
+        right: 82%;
+        z-index: 40;
+        width: 20px;
+        height: 20px;
+        background: url(/__source/__img/menu/menu_close.png) no-repeat 0 0;
+        background-size: contain;
+    }
+    header .menu {
+        cursor: pointer;
+        margin: 26px 10px 0 0;
+        width: 28px;
+        height: 26px;
+        float: right;
+        color: var(--deep-blue);
+        font-size: 28px;
+        background: transparent;
+    }
+    nav {
+        transition: right ease-in-out .5s;
+        right: -100%;
+        position: fixed;
+        z-index: 50;
+        float: right;
+        width: 78.125%;
+        height: 100%;
+        top: 0;
+        border-top: 6px solid #164c8a;
+        border-bottom: 2px solid #164c8a;
+        background: #fff;
+        overflow-y: scroll;
+    }
+    nav>div:not(:first-of-type) {
+        border-top: 1px solid #cdcdcd;
+        font-size: 16px;
+    }
+    nav>div>p {
+        background: url(/__source/__img/menu/menu_show.png) no-repeat right 20px center;
+        background-size: 17px;
+        padding: 15px;
+    }
+    nav>div>div>a::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 21px;
+        left: 20px;
+        width: 4px;
+        height: 4px;
+        background-color: var(--blue);
+        border-radius: 4px;
+    }
+    nav>div>div>a {
+        border: 1px solid #dbdbdb;
+        border-right: none;
+        border-bottom: none;
+        padding: 12px 15px 12px 37px;
+        font-weight: 300;
+        font-size: 14px;
+        background-color: #f4f4f6;
+    }
+    header>span {
+        display: none;
+    }
+    header .timer {
+        padding: 5px 10px;
+        font-size: 13px;
+        right: 50px;
+        top: 25px;
+        height: 31px;
+        width: 85px;
+    }
+}

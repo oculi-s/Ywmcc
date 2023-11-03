@@ -1,0 +1,19 @@
+.a-2 {
+    min-height: 90%;
+    width: 100%;
+}
+
+.a-21>div {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.a-21>div>* {
+    vertical-align: middle;
+}
+
+.a-20 {
+    min-height: unset;
+    text-align: right;
+    margin-bottom: 15px;
+}

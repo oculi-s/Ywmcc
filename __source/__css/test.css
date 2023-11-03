@@ -1,0 +1,188 @@
+.m-22 table {
+    border-top: 2px solid var(--blue);
+    table-layout: fixed;
+    width: 100%;
+}
+
+.m-22 th {
+    background: var(--table-bg);
+    font-weight: 500;
+}
+
+.m-22 tr>* {
+    border-bottom: 1px solid var(--main-border);
+    text-align: center;
+}
+
+.m-22 tr>*:not(:first-child) {
+    border-left: 1px solid var(--main-border);
+}
+
+.p {
+    cursor: pointer;
+}
+
+.m-22 label input {
+    margin-right: 5px;
+}
+
+.t3 td>input {
+    display: none;
+}
+
+[rowspan] {
+    border-right: 1px solid var(--main-border);
+}
+
+.meta {
+    width: 100%;
+}
+
+.meta>* {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-bottom: 1px solid var(--main-border);
+    border-right: 1px solid var(--main-border);
+}
+
+.meta>*:first-child {
+    border-top: 1px solid var(--main-border);
+}
+
+.meta>*>* {
+    display: table-cell;
+    text-align: center;
+    border-left: 1px solid var(--main-border);
+    vertical-align: middle;
+}
+
+.meta span {
+    background: var(--blue);
+    color: #fff;
+    padding: 5px;
+    width: 15%;
+    vertical-align: middle;
+}
+
+.meta label {
+    height: 100%;
+}
+
+.meta dd {
+    display: inline-block;
+    padding: 5px;
+}
+
+@media screen and (min-width:768px) {
+    .m-22 tr>* {
+        padding: 15px 0;
+        font-size: 16px;
+    }
+    .m-22 td {
+        padding: 15px;
+    }
+    .meta {
+        padding: 0 10px;
+    }
+    .meta dd {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .m-22 tr>* {
+        padding: 10px 0;
+        font-size: 14px;
+    }
+    .m-22 td {
+        padding: 10px;
+    }
+    .meta {
+        margin-top: 30px;
+    }
+    .meta>*>* {
+        font-size: 14px;
+    }
+}
+
+form>div {
+    margin-bottom: 35px;
+}
+
+.des {
+    color: var(--blue);
+    margin-bottom: 10px;
+}
+
+.ref {
+    margin: 10px 0;
+    font-size: 15px;
+    color: var(--footer-text);
+    padding-left: 20px;
+    position: relative;
+}
+
+.ref::before {
+    content: "※";
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.res>table {
+    margin-top: 35px;
+}
+
+.res>button,
+.res>span,
+.res>a {
+    font-size: 16px;
+    padding: 5px 10px;
+    width: 130px;
+    max-width: 30%;
+    min-width: unset;
+    display: inline-block;
+    vertical-align: top;
+    height: 36px;
+    margin: 0;
+}
+
+.res>span {
+    text-align: right;
+    border: 1px solid var(--main-border);
+    margin-right: 10px;
+    background: #fff;
+}
+
+.res>button,
+.res>a {
+    background: var(--light-blue);
+    color: #fff !important;
+}
+
+.go {
+    float: right;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.o {
+    opacity: 1;
+}
+
+.res>div {
+    background: #fafafa;
+    text-align: center;
+    display: block;
+    border: 1px solid var(--main-border);
+    padding: 30px 0;
+    margin-top: 30px;
+}
+
+.res>div>p>* {
+    color: red;
+    font-weight: bold;
+    margin: 0 5px;
+}

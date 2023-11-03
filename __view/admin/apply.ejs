@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>상담 내역</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css" />
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico" />
+    <link rel="stylesheet" href="/__source/__css/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/main.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/admin.css" />
+    <link rel="stylesheet" href="/__source/__css/admin/apply.css" />
+</head>
+
+<body>
+    <div class="a-0">
+        <a href="/admin/"><i class="fa fa-arrow-left"></i> 뒤로가기</a>
+        <span>진행중인 상담 : <span class="n"><%- Object.values(apply).length %></span>명</span>
+    </div>
+    <div class="a-2">
+        <div class="a-20">
+            <button class="save">저장</button>
+            <button class="down">다운로드</button>
+        </div>
+        <div class="a-21">
+            <div>
+                <span class="grey color"></span>
+                <span>신청 취소</span>
+                <span class="blue color"></span>
+                <span>상담 완료</span>
+                <span class="green color"></span>
+                <span>상담 대기</span>
+            </div>
+            <%- include(ba.d.admin.alist, {color:true, comment:true, metas:true, before:true}) %>
+        </div>
+    </div>
+</body>
+
+</html>

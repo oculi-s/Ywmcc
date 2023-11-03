@@ -1,0 +1,342 @@
+<html>
+
+<head>
+    <title>공지사항 수정</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/board.css">
+    <link rel="stylesheet" href="/__source/__css/admin/board.css">
+    <link rel="stylesheet" href="/__source/__css/admin/edit.css">
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.6/beautify-html.min.js"></script>
+    <script type="module">
+        import {
+            $,
+            $$
+        } from '/__source/__js/_.js';
+
+        let par = key => Object.fromEntries(new URLSearchParams(location.search))[key];
+        let uid = par('uid');
+        let add = par('add');
+        let hide = $('#hide');
+        let title = $('#title');
+        let author = $('#author');
+        let data = $('.prettyprint');
+
+        async function post(location, data, json = true) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", location, false);
+            if (json) {
+                xhr.setRequestHeader("Content-Type", "application/json");
+                data = JSON.stringify(data);
+            }
+            xhr.send(data);
+            return xhr;
+        }
+
+        let p = $('.prettyprint');
+        document.onkeydown = async e => {
+            if (e.ctrlKey && e.keyCode == 83) {
+                e.preventDefault();
+                save();
+            } else if (e.ctrlKey && e.keyCode == 75) {
+                e.preventDefault();
+                p.innerText = (await post('/board/format', {
+                    data: p.innerText
+                })).response;
+                p.classList.remove('prettyprinted');
+                PR.prettyPrint();
+            } else if (e.ctrlKey && e.keyCode == 188) {
+                e.preventDefault();
+                if (p.classList.contains('d')) {
+                    $('.edit').click();
+                } else {
+                    $('.preview').click();
+                }
+            } else if (e.ctrlKey && e.keyCode == 79) {
+                e.preventDefault();
+                $('.b-meta a:last-child').click();
+            }
+        }
+
+        async function save() {
+            let dict = {
+                uid,
+                add,
+                data: data.innerText.split('\n').map(e => e.trim()).join('\n'),
+            }
+            if (!title.innerText) {
+                alert('제목을 입력해주세요.');
+                title.focus();
+                return;
+            } else if (!author.innerText) {
+                alert('작성자를 입력해주세요.')
+                author.focus();
+                return;
+            }
+            dict.meta = {
+                title: title.innerText,
+                author: author.innerText,
+                admin: hide.checked,
+            }
+            let res = await post('/board/save', dict);
+            if (res.status == 200) {
+                alert('수정되었습니다.');
+                location.reload();
+            } else {
+                alert(res.responseText);
+            }
+        }
+
+        let prev = $('.prev');
+        async function preview() {
+            data.classList.add('d');
+            prev.classList.remove('d');
+            let res = await post('/board/ejs', {
+                uid: uid,
+                data: data.innerText.split('\n').map(e => e.trim()).join('\n')
+            });
+            prev.innerHTML = res.response;
+            $$('[type="text/plain"]').forEach(e => {
+                e.innerText = html_beautify(e.innerText)
+            });
+            PR.prettyPrint();
+        }
+
+        $('a.edit').onclick = () => {
+            data.classList.remove('d');
+            prev.classList.add('d');
+        }
+
+        $('a.preview').onclick = preview;
+        $('.add').onclick = () => {
+            if (confirm('페이지를 나가시겠습니까?')) {
+                location.href = '/board/add';
+            }
+        }
+        $('.save').onclick = save;
+        $('.del').onclick = () => {
+            if (confirm('공지를 삭제하시겠습니까?')) {
+                location.href = `/board/del?uid=${uid}`;
+            }
+        }
+        let help = $('.help');
+        help.onmouseover = () => {
+            $('dialog').open = true;
+        }
+        help.onmouseout = () => {
+            $('dialog').open = false;
+        }
+
+        let input = $('.files input')
+
+        async function push(file) {
+            let form = new FormData();
+            form.append('file', file, escape(file.name));
+            form.append('uid', uid);
+            let res = await post('/board/file/upload', form, 0);
+            let p = document.createElement('p');
+            p.innerHTML = res.response;
+            p.$$('.fa-clone').forEach(e => {
+                e.onclick = () => {
+                    clone(e)
+                };
+            })
+            $('.files>div').prepend(p);
+        }
+
+        input.onchange = e => {
+            e.target.files.forEach(push);
+            $('.files input').value = '';
+        }
+
+        window.deleteFile = async (e) => {
+            if (confirm('삭제하시겠습니까?')) {
+                let name = e.parentElement.getAttribute('name');
+                await post('/board/file/delete', {
+                    uid,
+                    name
+                });
+                e.parentElement.remove();
+            }
+        }
+
+        let load = $('.load');
+        load.$('.fa-times').onclick = () => {
+            load.classList.add('d');
+        }
+
+        document.addEventListener("dragover", e => {
+            e.preventDefault();
+        });
+
+        document.addEventListener('dragenter', e => {
+            e.preventDefault();
+            load.classList.remove('d');
+        });
+
+        document.addEventListener('drop', e => {
+            e.preventDefault();
+            load.classList.add('d');
+            e.dataTransfer.files.forEach(push);
+        });
+
+        function clone(e) {
+            let name = e.closest('p').getAttribute('name');
+            let type = e.getAttribute('type');
+            e.classList.add('copied');
+            let str = `<%%- ${type}('${name}') %%>`;
+            let t = document.createElement('textarea');
+            t.value = str;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand("copy");
+            document.body.removeChild(t);
+        }
+
+        $$('.fa-clone').forEach(e => {
+            e.onclick = () => {
+                clone(e)
+            };
+        })
+    </script>
+</head>
+
+<body>
+    <div class="a-0">
+        <a href="/admin"><i class="fa fa-arrow-left"></i> 뒤로가기</a>
+        <span>공지사항 수정</span>
+    </div>
+    <section>
+        <div>
+            <% board = board.sort((a,b)=>new Date(`${b.date} ${b.time}`)-new Date(`${a.date} ${a.time}`)) %>
+            <% let i = board.indexOf(meta); %>
+            <% let prev = i>0 ? board[i-1]:null %>
+            <% let next = i<board.length ? board[i+1]:null %>
+            <table class="b-portal">
+                <tbody>
+                    <tr>
+                        <th>
+                            <% if (prev) { %>
+                            <a href=<%- `/board/edit?uid=${prev.uid}` %>>
+                                <b><i class="fa fa-angle-left"></i> 이전</b>
+                                <xmp><%- prev.title %></xmp>
+                            </a>
+                            <% } %>
+                        </th>
+                        <td>
+                            <% if (next) { %>
+                            <a href=<%- `/board/edit?uid=${next.uid}` %>>
+                                <xmp><%- next.title %></xmp>
+                                <b>다음 <i class="fa fa-angle-right"></i></b>
+                            </a>
+                            <% } %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <table class="b-meta">
+                <thead>
+                    <tr>
+                        <th contenteditable="true" id="title" placeholder="제목"><%- meta.title %></th>
+                        <td><%- meta.date %> <%- meta.time %></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th contenteditable="true" id="author" placeholder="작성자"><%- meta.author %></th>
+                        <td>
+                            <a class="u" href="/board/">목록으로</a>
+                            <a class="u" href="<%- `/board?uid=${meta.uid}` %>">원문보기</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="nav">
+            <a class="edit">
+                <span>수정</span>
+                <div></div>
+            </a>
+            <a class="preview">
+                <span>미리보기</span>
+                <div></div>
+            </a>
+            <span class="fa fa-question-circle help">
+                <dialog onclick="this.close();">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Ctrl + S</th>
+                                <td>저장</td>
+                            </tr>
+                            <tr>
+                                <th>Ctrl + K</th>
+                                <td>코드 정렬</td>
+                            </tr>
+                            <tr>
+                                <th>Ctrl + E</th>
+                                <td>수정</td>
+                            </tr>
+                            <tr>
+                                <th>Ctrl + ,</th>
+                                <td>미리보기<br>수정화면 전환</td>
+                            </tr>
+                            <tr>
+                                <th>Ctrl + o</th>
+                                <td>원문 보기</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </dialog>
+            </span>
+            <span><label><input id="hide" type="checkbox" <%- meta.admin?'checked':'' -%>>비공개</label></span>
+        </div>
+        <code contenteditable="true" class="prettyprint"><%= String(data).trim() %></code>
+        <div class="prev d b-main"></div>
+        <div class="files">
+            <input id="file" type="file" multiple="">
+            <div>
+                <% for (let f of files) { %>
+                <% let stat = fs.statSync(ba.d.board.file(meta.uid, f)); %>
+                <p class="file" name="<%- f %>">
+                    <span class="name"><%- f %></span>
+                    <span>
+                        <i class="fa fa-clone" type="img"> img</i>
+                        <i class="fa fa-clone" type="pdf"> pdf</i>
+                        <i class="fa fa-clone" type="download"> down<span class=m-h>load</span></i>
+                    </span>
+                    <button class="fa fa-trash" onclick="deleteFile(this)"></button>
+                    <span class="size"><%- ba.byte(stat.size) %></span>
+                </p>
+                <% } %>
+            </div>
+        </div>
+        <div class="des" style="text-align:left;">
+            <p>* 같은 이름의 파일은 업로드할 수 없습니다.</p>
+            <p>* 드래그로 파일 업로드가 가능합니다.</p>
+            <p>* 사용되지 않은 파일은 자동으로 삭제됩니다.</p>
+        </div>
+        <div class="admin">
+            <button class="add">글쓰기</button>
+            <button class="save">저장</button>
+            <button class="del">삭제</button>
+        </div>
+    </section>
+    <label for="file"></label>
+    <div class="d load">
+        <button class="fa fa-times"></button>
+        <div>
+            <i class="fa fa-upload"></i>
+            <p>드래그로 파일 업로드</p>
+        </div>
+    </div>
+</body>
+
+</html>

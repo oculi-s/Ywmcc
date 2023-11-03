@@ -1,0 +1,153 @@
+.t1,
+.t2 {
+    width: 100%;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.t1 {
+    border-spacing: 5px;
+    border-collapse: unset;
+}
+
+.ts {
+    text-shadow: 1px 1px 1px #aaa;
+}
+
+.t1 td {
+    border-radius: 5px;
+    color: #fff;
+    background: #9DC3E6;
+}
+
+.t1 caption {
+    color: #2F5597;
+    font-weight: bold;
+}
+
+.t2 {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.t2 tr:first-child th {
+    border-top: none;
+}
+
+.t2 tr:last-child th {
+    border-bottom: none;
+}
+
+.t2 tr th:first-child {
+    border-left: none;
+}
+
+.t2 tr th:last-child {
+    border-right: none;
+}
+
+.t2 tr {
+    min-height: 150px;
+    line-height: 150px;
+}
+
+.t2 .highlight {
+    line-height: 50px;
+}
+
+.t2 .highlight th {
+    border: none;
+}
+
+.t2 .highlight label {
+    position: relative;
+    border-bottom: 2px solid var(--light-blue);
+}
+
+.t2 .highlight i::before {
+    content: "\f053";
+    position: absolute;
+    font-size: 13px;
+    left: 20px;
+    top: 20px;
+}
+
+.t2 th {
+    vertical-align: top;
+    border: 2px solid var(--blue);
+    font-weight: normal;
+}
+
+.t2 label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: background-color .3s ease;
+    background: #f5f9fd;
+}
+
+.t2 input {
+    display: none;
+}
+
+.t2 label:hover {
+    cursor: pointer;
+    color: white;
+    background: var(--blue);
+    transition: background-color .3s ease;
+}
+
+.t2 dl {
+    background: #f5f9fd;
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px;
+    padding-top: 30px;
+    word-break: keep-all;
+    line-height: 1.5;
+}
+
+.t2 dt {
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.t2>*>span {
+    border-radius: 5px 0;
+}
+
+.t2 ul {
+    display: inline-block;
+    margin: auto;
+}
+
+.t2 li {
+    list-style-type: circle;
+    text-align: left;
+}
+
+@media screen and (max-width:768px) {
+    .t1 th {
+        padding: 5px;
+        font-size: 13px;
+    }
+    .t1 caption {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .t1 th {
+        padding: 10px;
+    }
+    .t1 caption {
+        font-size: 25px;
+    }
+    .t2 label {
+        font-size: 20px;
+    }
+    .t2 {
+        width: 80%;
+    }
+}

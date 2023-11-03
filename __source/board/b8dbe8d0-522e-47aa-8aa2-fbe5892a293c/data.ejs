@@ -1,0 +1,245 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.6/beautify-html.min.js"></script>
+<link rel="stylesheet" href="/__source/__css/prps.css">
+<style>
+.b-main [type="text/plain"] {display:block;}
+.prev * {margin-left:unset !important;}
+.des {font-size:.9em; color:grey; text-align:center;}
+.b-main a {text-decoration:initial}
+.prettyprint {font-weight:normal;}
+.b-main table {table-layout:fixed}
+</style>
+<h3>3. CSS (cascading style sheet)</h3>
+<hr>
+보통 웹 프로그래밍은 HTML (뼈대) + CSS (디자인) + Javascript (기능) 의 조합으로 이루어집니다.<br>
+그 중 CSS는 디자인과 관련된 부분을 간단하게 추가할 수 있는 언어!
+<code class=prettyprint>
+<script type=text/plain>
+<style>
+"tag 이름" {
+"적용할 style 이름" : "적용할 style 값";
+}
+</style>
+</script>
+</code>
+CSS 사용의 장점은 코드 길이가 줄어들고 (작성할 내용이 줄어들고), 수정이 편하다는 것!<br>이전 글 <a class="u" href="https://wmcc.yonsei.ac.kr/board?uid=e14907e2-2315-42ed-b0a3-04910726fbee">HTML 이란??</a>에서 소개드렸던 style 속성을 사용하지 않고, 더 어렵지만 단순한 방법으로 스타일을 적용할 수 있습니다.
+<table>
+<tr>
+<th colspan=2>CSS 미사용시</th>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type="text/plain">
+<table>
+<tr><th>테이블에 스타일 적용하기</th></tr>
+<tr><td style="font-size:13px; font-weight:bold; color:blue;">정말 복잡해집니다.</td></tr>
+<tr><td style="font-size:13px; font-weight:bold; color:blue;">문서가 복잡해질수록 화가 막 나거든요.</td></tr>
+<tr><td style="font-size:13px; font-weight:bold; color:blue;">td마다 일일히 다 해줘야해요.</td></tr>
+</table>
+</script>
+</code>
+</td>
+<td>
+<table>
+<tr>
+<th>테이블에 스타일 적용하기</th>
+</tr>
+<tr>
+<td style="font-size:13px; font-weight:bold; color:blue;">정말 복잡해집니다.</td>
+</tr>
+<tr>
+<td style="font-size:13px; font-weight:bold; color:blue;">문서가 복잡해질수록 화가 막 나거든요.</td>
+</tr>
+<tr>
+<td style="font-size:13px; font-weight:bold; color:blue;">td마다 일일히 다 해줘야해요.</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th colspan=2>CSS 사용시</th>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<style>
+/* .과 #은 후술하겠지만 */
+/* 각각 class와 id의 "selector" 라는 것으로 */
+/* 어떤 요소들을 쉽게 선택하고 싶을 때 사용합니다. */
+.b-main #t td {
+/* 여기서는 b-main이라는 class안에 존재하는 */
+/* t라는 id를 가진 요소 안에 존재하는 */
+/* td라는 태그를 가진 요소에 아래 스타일을 적용하겠다! */
+font-size:13px;
+font-weight:bold;
+color:blue;
+}
+</style>
+<table id="t">
+<tr><th>CSS 를 쓰면 편안해지죵</th></tr>
+<tr><td>여러개의 요소에 적용될 스타일을 한번에!</td></tr>
+<tr><td>원하는 요소만 빠르게!</td></tr>
+<tr><td>일일히 수정할 필요없이 style 태그 내부 내용만!</td></tr>
+</table>
+</script>
+</code>
+</td>
+<td>
+<style>
+.b-main #t td {
+font-size:13px;
+font-weight:bold;
+color:blue;
+}
+</style>
+<table id="t">
+<tr>
+<th>CSS 를 쓰면 편안해지죵</th>
+</tr>
+<tr>
+<td>여러개의 요소에 적용될 스타일을 한번에!</td>
+</tr>
+<tr>
+<td>원하는 요소만 빠르게!</td>
+</tr>
+<tr>
+<td>일일히 수정할 필요없이 style 태그 내부 내용만!</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<h3>4. Class, Id와 CSS</h3>
+<hr>
+Class는 여러 tag의 스타일과 기능을 동시에 관리할 수 있는 일종의 "<b>그룹이름 부여하기</b>"<br>
+ID는 하나의 tag에만 스타일과 기능을 부여하고 싶을 때 사용하는 "<b>고유이름 부여하기</b>"
+<h4>1) Class, 그룹이름</h4>
+Class별로 style을 만들어 주고 싶으면 ".class 이름"으로 스타일을 지정해 주면 됨.<br>
+<b>"."은 class의 "selector"라고 부름</b>
+<code class=prettyprint>
+<script type=text/plain>
+<style>
+".class 이름" {
+"적용할 style 이름" : "적용할 style 값";
+}
+</style>
+</script>
+</code>
+만약 class를 가진 여러 요소 중 특정 태그 (예를 들면 div) 에만 style을 적용하고 싶으면 "tag이름.class이름" 으로 스타일을 적용해 주면 됩니다.
+<table>
+<tr>
+<th>코드</th>
+<th>결과</th>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<style>
+.a { color:red; }
+span.c {color:blue;}
+</style>
+<p class="a">class가 a인 요소 1</p>
+<p class="a">class가 a인 요소 2</p>
+<span class="b">class가 b인 요소 1</span>
+<span class="c">class가 b인 span 태그에 적용하기</span>
+</script>
+</code>
+</td>
+<td>
+<style>
+.a { color:red; }
+span.c {color:blue;}
+</style>
+<p class="a">class가 a인 요소 1</p>
+<p class="a">class가 a인 요소 2</p>
+<span class="b">class가 b인 요소 1</span>
+<span class="c">class가 b인 span 태그에 적용하기</span>
+</td>
+</tr>
+</table>
+<h4>2) Multiple class</h4>
+한 요소에 여러개의 클래스를 적용할 수 있음. 당연히 css도 클래스마다 적용해 줄 수 있음<br>
+<table>
+<tr>
+<th>코드</th>
+<th>결과</th>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<style>
+.m1 { color:red; }
+.m2 {font-weight:bold;}
+</style>
+<p class="m1 m2">class가 m1이면서 m2인 요소 : 굵은 빨강</p>
+<p class="m1">class가 m1인 요소 : 빨강</p>
+<span class="m2">class가 m2인 요소 : 굵게</span>
+</script>
+</code>
+</td>
+<td>
+<style>
+.m1 { color:red; }
+.m2 {font-weight:bold;}
+</style>
+<p class="m1 m2">class가 m1이면서 m2인 요소 : 굵은 빨강</p>
+<p class="m1">class가 m1인 요소 : 빨강</p>
+<span class="m2">class가 m2인 요소 : 굵게</span>
+</td>
+</tr>
+</table>
+<h4>3) ID, 고유이름</h4>
+ID별로 style을 만들어 주고 싶으면 "#ID 이름"으로 스타일을 지정해 주면 됨.<br>
+<b>"#"은 id의 "selector"라고 부름</b><br>
+<span class=red>단, ID는 전체 문서에 하나씩 밖에 사용 못함</span>
+<code class=prettyprint>
+<script type=text/plain>
+<style>
+"#id 이름" {
+"적용할 style 이름" : "적용할 style 값";
+}
+</style>
+</script>
+</code>
+<table>
+<tr>
+<th>코드</th>
+<th>결과</th>
+</tr>
+<tr>
+<td>
+<code class=prettyprint>
+<script type=text/plain>
+<style>
+#a { color:red; }
+span#b { color:blue; }
+</style>
+<p id="a">id가 a인 요소</p>
+<p id="b">id가 b인 요소</p>
+<span id="b">마찬가지로 tag#id로 스타일 적용가능!</span>
+</script>
+</code>
+</td>
+<td>
+<style>
+#a { color:red; }
+span#b {color:blue;}
+</style>
+<p id="a">id가 a인 요소</p>
+<p id="b">id가 b인 요소</p>
+<span id="b">마찬가지로 tag#id로 스타일 적용가능!</span>
+</td>
+</tr>
+</table>
+<h3>5. Cascading</h3>
+<hr>
+CSS를 사용하는 것의 최대 장점!<br>
+요소 내의 요소 (ex. table > tr > th) 가 들어있는 경우 스타일 적용을 쉽게 할 수 있음.
+<script>
+const $$ = document.querySelectorAll.bind(document);
+$$('[type="text/plain"]').forEach(e=>{e.innerText = html_beautify(e.innerText)});
+</script>

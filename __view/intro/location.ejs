@@ -1,0 +1,54 @@
+<!-- https://github.com/oculi-s/wmcounsel -->
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <title>원주의과대학 학생상담코칭센터</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/__source/__img/favicon.ico">
+    <link rel="stylesheet" href="/__source/__css/main.css">
+    <link rel="stylesheet" href="/__source/__css/intro/location.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+</head>
+
+<body>
+    <%-include(d.header)%>
+    <section>
+        <div class="m-img m-h"></div>
+        <div class="m-2 bg">
+            <%-include(d.aside)%>
+            <article class="m-22">
+                <div>
+                    <h2>오시는 길</h2>
+                    <%- include(d.portal) %>
+                </div>
+                <ol>
+                    <li>주소 : (26426) 원주시 일산로 20 원주의과대학 학생상담코칭센터 </li>
+                    <li>
+                        위치 : <span>상담센터 : 의학관 310호<br>상담실 : 의학관 308호</span>
+                    </li>
+                    <li>
+                        <p>지도</p>
+                        <div style="margin-left:-20px">
+                            <div id="daumRoughmapContainer1651651519029" class="root_daum_roughmap root_daum_roughmap_landing" style="max-width:100%; margin: 10px 0;"></div>
+                        </div>
+                    </li>
+                </ol>
+                <script src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                <script>
+                    new daum.roughmap.Lander({
+                        "timestamp": "1651651519029",
+                        "key": "2a4wa",
+                        "mapWidth": "640",
+                        "mapHeight": "360"
+                    }).render();
+                </script>
+            </article>
+        </div>
+    </section>
+    <%-include(d.footer)%>
+
+</body>
+
+</html>
