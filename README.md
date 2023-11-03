@@ -2,15 +2,18 @@
 
 <div align="center">
   <a href="https://wmcc.yonsei.ac.kr">
-    <img src="./__source/__img/logo_header.png" alt="Logo" height="40">
-    <h3 align="center">연세대학교 원주의과대학 학생상담코칭센터</h3>
+    <img src="./__source/__img/logo_login.png" alt="Logo" height="180">
   </a>
+  <h3 align="center">연세대학교 원주의과대학 학생상담코칭센터</h3>
   <p align="center">
     연세대학교 원주의과대학의 학생상담/자가검사 서비스
+    <br/>
+    <a href="https://wmcc.yonsei.ac.kr" target=blank>바로가기</a>
+
+    보안상 개인정보와 사용된 백엔드코드는 모두 비공개 처리되었습니다.  
+    디자인/프레임워크를 중심으로 공개됩니다.
   </p>
 
-  보안상 개인정보와 사용된 백엔드코드는 모두 비공개 처리되었습니다.  
-  디자인/프레임워크를 중심으로 공개됩니다.
 </div>
 
 
