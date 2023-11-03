@@ -3,8 +3,8 @@
 <div align="center">
   <a href="https://wmcc.yonsei.ac.kr">
     <img src="./__source/__img/logo_header.png" alt="Logo" height="40">
+    <h3 align="center">연세대학교 원주의과대학 학생상담코칭센터</h3>
   </a>
-  <h3 align="center">연세대학교 원주의과대학 학생상담코칭센터</h3>
   <p align="center">
     연세대학교 원주의과대학의 학생상담/자가검사 서비스
   </p>
