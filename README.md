@@ -23,12 +23,6 @@
 3) UserControl : ![Passport.js]
 4) Server : ![Ubuntu] ![Nginx]
 
-[Node.js]: https://img.shields.io/badge/node.js-000000?style=for-the-badge&logo=nodedotjs&logoColor=white
-[Express.js]: https://img.shields.io/badge/express.js-000000?style=for-the-badge&logo=express&logoColor=white
-[Passport.js]: https://img.shields.io/badge/PassPort.js-000000?style=for-the-badge&logo=passport&logoColor=white
-[Ubuntu]: https://img.shields.io/badge/ubuntu-000000?style=for-the-badge&logo=ubuntu&logoColor=red
-[Nginx]: https://img.shields.io/badge/nginx-000000?style=for-the-badge&logo=nginx&logoColor=green
-
 ## 주요기능
 1) 상담신청 및 수정
 2) 자가 심리상태 검사
@@ -45,3 +39,25 @@
  - 미로그인 유저의 상담신청을 서버상에서 방지
  - GET이 아닌 POST 요청을 통한 상담신청 및 수정
  - 로그인 정보 유지 시간 **10분**으로 설정
+
+
+
+[Gmail]: https://img.shields.io/badge/Gmail-EA4335?logo=gmail&logoColor=fff&style=flat
+[Tistory]: https://img.shields.io/badge/Tistory-000?logo=tistory&logoColor=fff&style=flat
+[Node.js]: https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=flat
+[Express.js]: https://img.shields.io/badge/Express-000?logo=express&logoColor=fff&style=flat
+[Passport.js]: https://img.shields.io/badge/Passport-34E27A?logo=passport&logoColor=000&style=flat
+[React]: https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat
+[Next.js]: https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat
+[NextAuth]: https://img.shields.io/badge/NextAuth-000000?style=flat&logo=nextdotjs&logoColor=white
+[Ubuntu]: https://img.shields.io/badge/Ubuntu-E95420?logo=ubuntu&logoColor=fff&style=flat
+[Nginx]: https://img.shields.io/badge/NGINX-009639?logo=nginx&logoColor=fff&style=flat
+[Lets encrypt]: https://img.shields.io/badge/Let's%20Encrypt-003A70?logo=letsencrypt&logoColor=fff&style=flat
+[CPP]: https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=fff&style=flat
+[Python]: https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54
+[Tensorflow]: https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat&logo=TensorFlow&logoColor=white
+[OpenAI]: https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=fff&style=flat
+[Clang]: https://img.shields.io/badge/C-A8B9CC?logo=c&logoColor=fff&style=flat
+[Coffee]: https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png
+[CodeForces]: https://badges.joonhyung.xyz/codeforces/oculis.svg
+[Solved.ac]: http://mazassumnida.wtf/api/mini/generate_badge?boj=oculis
